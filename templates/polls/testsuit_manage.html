@@ -1,0 +1,72 @@
+{% extends "polls/base.html" %}
+{% block content %}
+
+    <div class="container theme-showcase" role="main">
+
+      <!--发布会表单-->
+      <div class="page-header">
+        <!-- 搜索功能-->
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form" method="get" action="/search_phone/">
+            <div class="form-group">
+              <input name="phone" type="text" placeholder="Case Name" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">搜索</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+
+      <!--列表显示 -->
+      <div class="row">
+        <div class="col-md-8">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>工程</th>
+                <th>名称</th>
+                <th>状态</th>
+                <th>用例数目</th>
+                <th>测试者</th>
+                <th>最后修改时间</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for ts in testsuits %}
+                <tr>
+                  <td>{{ ts.id }}</td>
+                  <td>{{ ts.test_project }}</td>
+                  <td>{{ ts.name }}</td>
+                  <td>{{ ts.is_enable }}</td>
+                  <td>{{ ts.case_number }}</td>
+                  <td>{{ ts.owner }}</td>
+                  <td>{{ ts.last_modified }}</td>
+                  <td>{{ ts.description }}</td>
+                </tr>
+             {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 列表分页器 -->
+    <div class="pagination">
+      <span class="step-links">
+        {% if guests.has_previous %}
+          <a href="?phone={{ phone }}&page={{ guests.previous_page_number }}">previous</a>
+        {% endif %}
+          <span class="current">
+            Page {{ guests.number }} of {{ guests.paginator.num_pages }}.
+          </span>
+        {% if guests.has_next %}
+          {% if phone %}
+            <a href="?phone={{ phone }}&page={{ guests.next_page_number }}">next</a>
+          {% else %}
+           <a href="?page={{ guests.next_page_number }}">next</a>
+          {% endif %}
+        {% endif %}
+      </span>
+    </div>
+
+{% endblock %}
