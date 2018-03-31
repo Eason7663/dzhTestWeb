@@ -17,6 +17,8 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls import url, include
 from polls import views
+from TestFrameWork import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -30,4 +32,4 @@ urlpatterns = [
     url(r'^help_document/$', views.help_document),
     url(r'^execute_case/(?P<case_id>[0-9]+)/$', views.execute_case),
     url(r'^execute_case/(?P<case_id>[0-9]+)/$', views.execute_case),
-]
+] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

@@ -41,7 +41,7 @@ def login_action(request):
             return response
             # return HttpResponse('HELLO')
         else:
-            return render(request,"index.html",{"error":"username or password error!"})
+            return render(request,"polls/index.html",{"error":"username or password error!"})
     # 防止直接通过浏览器访问 /login_action/ 地址。
     return render(request,"index.html")
 
