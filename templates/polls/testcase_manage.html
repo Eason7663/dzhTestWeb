@@ -7,7 +7,7 @@
       <div class="page-header">
         <!-- 搜索功能-->
         <div id="navbar" class="navbar-collapse collapse" align="right">
-          <form class="navbar-form" method="get" action="/search_phone/">
+          <form class="navbar-form" method="get" action="/search_case/">
             <div class="form-group">
               <input name="phone" type="text" placeholder="Case Name" class="form-control">
             </div>
@@ -48,17 +48,25 @@
                 {% for tc in testcases %}
                 <tr>
                     <form method="get" action="/execute_case/{{ tc.id }}">
-                      <td style="width: 80px">{{ tc.id }}</td>
-                      <td style="width: 80px">{{ tc.test_suit }}</td>
-                      <td style="width: 80px">{{ tc.name }}</td>
-                      <td style="width: 80px">{{ tc.is_enable }}</td>
-                      <td style="width: 80px">{{ tc.url_path }}</td>
-                      <td style="width: 80px">{{ tc.url_param }}</td>
-                      <td style="width: 80px">{{ tc.last_modified }}</td>
-                      <td style="width: 80px">{{ tc.description }}</td>
+                      <td >{{ tc.id }}</td>
+                      <td >{{ tc.test_suit }}</td>
+                      <td >{{ tc.name }}</td>
+                      <td >{{ tc.is_enable }}</td>
+                      <td >{{ tc.url_path }}</td>
+                      <td >{{ tc.url_param }}</td>
+                      <td >{{ tc.last_modified }}</td>
+                      <td >{{ tc.description }}</td>
                       <td>
                           <p>
-                            <button id="fat-btn" class="btn btn-primary" type="submit">执行用例</button>
+                            <button formtarget="_blank"
+                                    onclick="accessById();"
+                                    id="fat-btn{{ tc.id }}" class="btn btn-primary" type="submit">执行用例</button>
+                              <script type="text/javascript">
+                                  var accessById = function () {
+                                      {#alert(document.getElementById("fat-btn").innerHTML)#}
+                                      document.getElementById("fat-btn{{ tc.id }}").innerHTML = "执行中..."
+                                  }
+                              </script>
                           </p>
                       </td>
                     </form>

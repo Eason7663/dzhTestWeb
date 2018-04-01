@@ -1,0 +1,19 @@
+table{
+    background-color: #a6e1ec;
+    width: 400px;
+}
+td{
+    background-color: #4cae4c;
+    font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+    font-size: 20pt;
+    text-shadow: #2a6496;
+}
+body{
+    text-align: center;
+}
+ul{
+    list-style-type: none;
+}
+li{
+    display:inline-block;
+}
