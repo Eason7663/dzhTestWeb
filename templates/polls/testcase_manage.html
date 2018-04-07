@@ -19,19 +19,17 @@
       <!--列表显示 -->
       <div class="row">
         <div class="col-md-9">
-          <table class="table table>
+          <table class="table table-striped">
             <thead>
-              <colgroup>
                 <col></col>
                 <col></col>
                 <col></col>
                 <col></col>
                 <col width="20%"></col>
                 <col width="20%"></col>
+                <col width="20%"></col>
                 <col></col>
                 <col></col>
-                <col></col>
-              </colgroup>
               <tr>
                 <th>id</th>
                 <th>组件</th>
@@ -39,38 +37,65 @@
                 <th>状态</th>
                 <th>path</th>
                 <th>param</th>
-                <th>最后修改时间</th>
-                <th>描述</th>
+                <th>result</th>
+                <th>测试报告</th>
                 <th>执行</th>
               </tr>
             </thead>
             <tbody>
                 {% for tc in testcases %}
-                <tr>
-                    <form method="get" action="/execute_case/{{ tc.id }}">
+                    <tr>
                       <td >{{ tc.id }}</td>
                       <td >{{ tc.test_suit }}</td>
                       <td >{{ tc.name }}</td>
                       <td >{{ tc.is_enable }}</td>
                       <td >{{ tc.url_path }}</td>
                       <td >{{ tc.url_param }}</td>
-                      <td >{{ tc.last_modified }}</td>
-                      <td >{{ tc.description }}</td>
-                      <td>
-                          <p>
-                            <button formtarget="_blank"
-                                    onclick="accessById();"
-                                    id="fat-btn{{ tc.id }}" class="btn btn-primary" type="submit">执行用例</button>
-                              <script type="text/javascript">
-                                  var accessById = function () {
-                                      {#alert(document.getElementById("fat-btn").innerHTML)#}
-                                      document.getElementById("fat-btn{{ tc.id }}").innerHTML = "执行中..."
-                                  }
-                              </script>
-                          </p>
+                      <td >{{ tc.real_Result }}</td>
+                      <td >
+                          <a id="report_{{ tc.id }}" target="_blank">Null</a>
                       </td>
-                    </form>
-                </tr>
+                      <td>
+                        <button id="fat-btn{{ tc.id }}" class="btn btn-primary" data-loading-text="Loading..."
+                            type="button" onclick="loadXMLDoc({{ tc.id }})"> 执行
+                        </button>
+                          <script type="text/javascript">
+                            function loadXMLDoc(tcid)
+                            {
+                                exec_button = document.getElementById("fat-btn"+ tcid);
+                                report_button = document.getElementById("report_" + tcid);
+                                exec_button.innerHTML="执行中...";
+                                var xmlhttp;
+                                if (window.XMLHttpRequest)
+                                  {// code for IE7+, Firefox, Chrome, Opera, Safari
+                                  xmlhttp=new XMLHttpRequest();
+                                  }
+                                else
+                                  {// code for IE6, IE5
+                                  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                                  }
+                                  xmlhttp.open("GET","/execute_case/"+ tcid ,true);
+                                  xmlhttp.send();
+                                  //alert(xmlhttp.readyState + "\n" + xmlhttp.status);
+                                  xmlhttp.onreadystatechange = function(tcid)
+                                      {
+                                          if (xmlhttp.readyState === 4 && xmlhttp.status === 200){
+                                              if(xmlhttp.responseText === "pass"){
+                                                exec_button.className = "btn btn-success";
+                                              }
+                                              if(xmlhttp.responseText === "failed"){
+                                                exec_button.className = "btn btn-danger";
+                                              }
+                                              exec_button.innerHTML = xmlhttp.responseText;
+                                              report_button.innerHTML = "Report";
+                                              report_button.setAttribute("href","#"+tcid);
+                                          }
+                                      };
+
+                            }
+                          </script>
+                      </td>
+                    </tr>
                 {% endfor %}
             </tbody>
           </table>

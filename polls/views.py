@@ -10,7 +10,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_protect
 
 from polls.models import TestProject, TestSuit,TestCase
-
+import time
 
 
 # 首页(登录)
@@ -100,6 +100,9 @@ def help_document(request,args):
     return HttpResponse(template.render(return_dict, request))
 
 # 执行用例
-def execute_case(request,case_id):
-
-    return HttpResponse(case_id)
+def execute_case_action(request,case_id):
+    time.sleep(5)
+    if(case_id == "1"):
+        return HttpResponse("failed")
+    if(case_id == "2"):
+        return HttpResponse("pass")
