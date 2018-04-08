@@ -1,7 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect,JsonResponse
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import logging
 
@@ -10,8 +13,10 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_protect
 
 from polls.models import TestProject, TestSuit,TestCase
+from polls.serializers import TestProjectSerializer
 import time
 
+#http://www.chenxm.cc/post/289.html
 
 # 首页(登录)
 def index(request):
@@ -106,3 +111,49 @@ def execute_case_action(request,case_id):
         return HttpResponse("failed")
     if(case_id == "2"):
         return HttpResponse("pass")
+
+#返回json格式test project
+@csrf_exempt
+def testProject_list(request):
+    """
+    List all testproject, or create a new testproject.
+    :param request:
+    :return:
+    """
+    if request.method == 'GET':
+        testProject = TestProject.objects.all()
+        serializer = TestProjectSerializer(testProject,many=True)
+        return JsonResponse(serializer.data,safe=False)
+    elif request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = TestProjectSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            # serializer.data 数据创建成功后所有数据
+            return JsonResponse(serializer.data,status=201)
+        # serializer.errors 错误信息
+        return JsonResponse(serializer.errors,status=400)
+
+
+@csrf_exempt
+def testProject_detail(request, pk):
+    """
+    Retrieve, update or delete a code snippet.
+    """
+    try:
+        testProject = TestProject.objects.get(pk=pk)
+    except TestProject.DoesNotExist:
+        return HttpResponse(status=404)
+    if request.method == 'GET':
+        serializer = TestProjectSerializer(testProject)
+        return JsonResponse(serializer.data)
+    elif request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = TestProjectSerializer(testProject, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data)
+        return JsonResponse(serializer.errors, status=400)
+    elif request.method == 'DELETE':
+        testProject.delete()
+        return HttpResponse(status=204)

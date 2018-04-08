@@ -15,6 +15,9 @@ class TestProject(models.Model):
     #描述
     description = models.CharField(max_length=256)
 
+    class Meta:
+        ordering = ('name',)
+
     def __str__(self):
         return self.name
 
