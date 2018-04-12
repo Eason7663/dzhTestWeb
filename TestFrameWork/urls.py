@@ -31,4 +31,5 @@ urlpatterns = [
     url(r'^search_project_name/$', views.search_project_name),
     url(r'^help_document/$', views.help_document),
     url(r'^execute_case/(?P<case_id>[0-9]+)/$', views.execute_case_action),
-] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
+]
+# ] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

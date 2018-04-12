@@ -4,19 +4,21 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
+from rest_framework import status
 from rest_framework.parsers import JSONParser
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import logging
 
-# Create your views here.
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_protect
+
 
 from polls.models import TestProject, TestSuit,TestCase
 from polls.serializers import TestProjectSerializer
 import time
 
-#http://www.chenxm.cc/post/289.html
 
 # 首页(登录)
 def index(request):
@@ -106,14 +108,14 @@ def help_document(request,args):
 
 # 执行用例
 def execute_case_action(request,case_id):
-    time.sleep(5)
+    time.sleep(1)
     if(case_id == "1"):
         return HttpResponse("failed")
     if(case_id == "2"):
         return HttpResponse("pass")
 
 #返回json格式test project
-@csrf_exempt
+@api_view(['GET','POST'])
 def testProject_list(request):
     """
     List all testproject, or create a new testproject.
@@ -123,19 +125,18 @@ def testProject_list(request):
     if request.method == 'GET':
         testProject = TestProject.objects.all()
         serializer = TestProjectSerializer(testProject,many=True)
-        return JsonResponse(serializer.data,safe=False)
+        return Response(serializer.data)
     elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = TestProjectSerializer(data=data)
+        serializer = TestProjectSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             # serializer.data 数据创建成功后所有数据
-            return JsonResponse(serializer.data,status=201)
+            return Response(serializer.data,status=status.HTTP_201_CREATED)
         # serializer.errors 错误信息
-        return JsonResponse(serializer.errors,status=400)
+        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 
-@csrf_exempt
+@api_view(['GET','POST'])
 def testProject_detail(request, pk):
     """
     Retrieve, update or delete a code snippet.
@@ -143,17 +144,16 @@ def testProject_detail(request, pk):
     try:
         testProject = TestProject.objects.get(pk=pk)
     except TestProject.DoesNotExist:
-        return HttpResponse(status=404)
+        return Response(status=status.HTTP_404_NOT_FOUND)
     if request.method == 'GET':
         serializer = TestProjectSerializer(testProject)
-        return JsonResponse(serializer.data)
+        return Response(serializer.data)
     elif request.method == 'PUT':
-        data = JSONParser().parse(request)
-        serializer = TestProjectSerializer(testProject, data=data)
+        serializer = TestProjectSerializer(testProject, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data)
-        return JsonResponse(serializer.errors, status=400)
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
         testProject.delete()
-        return HttpResponse(status=204)
+        return Response(status=status.HTTP_204_NO_CONTENT)

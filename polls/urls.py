@@ -14,8 +14,8 @@
 from django.conf.urls import url
 from . import views
 
-urlpatterns = {
+urlpatterns = [
     url(r'^testproject/$', views.testProject_list),
     url(r'^testproject/(?P<pk>[0-9]+)/$', views.testProject_detail),
     url(r'^$', views.index, name = 'index'),
-}
+]
