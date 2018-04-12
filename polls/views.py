@@ -157,3 +157,79 @@ def testProject_detail(request, pk):
     elif request.method == 'DELETE':
         testProject.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+from rest_framework.views import APIView
+# class TestProjectList(APIView):
+#     #APIView实际继承django总的View
+#     #from django.views.generic import View
+#     """
+#     描述TestProject List的接口
+#     """
+#     def get(self,request,format=None):
+#         testProject  = TestProject.objects.all()
+#         serializer = TestProjectSerializer(testProject,many=True)
+#         return Response(serializer.data)
+#
+#     def post(self,request,format=None):
+#         serializer = TestProjectSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data,status=status.HTTP_201_CREATED)
+#         return Response(serializer.data,status=status.HTTP_400_BAD_REQUEST)
+#
+# class TestProjectDetail(APIView):
+#     """
+#     读取, 更新 or 删除一个代码片段(TestProject)实例(instance).
+#     """
+#     def get_object(self,pk):
+#         try:
+#             return TestProject.objects.get(pk=pk)
+#         except TestProject.DoesNotExist:
+#             raise status.HTTP_404_NOT_FOUND
+#
+#     def get(self, request, pk, format=None):
+#         testProject = self.get_object(pk)
+#         serilizer = TestProjectSerializer(testProject)
+#         return Response(serilizer.data)
+#
+#     def put(self,request,pk,format=None):
+#         testProject = self.get_object(pk)
+#         serializer = TestProjectSerializer(testProject,data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data)
+#         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+#
+#     def delete(self,request,pk,format=None):
+#         testProject = self.get_object(pk)
+#         testProject.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT)
+
+from rest_framework import generics
+from django.contrib.auth.models import User
+from polls.serializers import UserSerializer
+from rest_framework import permissions
+from polls.permissions import IsOwnerOrReadOnly
+
+class TestProjectList(generics.ListCreateAPIView):
+    queryset = TestProject.objects.all()
+    serializer_class = TestProjectSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+class TestProjectDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = TestProject.objects.all()
+    serializer_class = TestProjectSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
+
+
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class UserDetail(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

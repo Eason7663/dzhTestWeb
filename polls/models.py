@@ -1,5 +1,8 @@
 from __future__ import unicode_literals
 from django.db import models
+from pygments.lexers import get_lexer_by_name
+from pygments.formatters.html import HtmlFormatter
+from pygments import highlight
 
 # Create your models here.
 class TestProject(models.Model):
@@ -11,7 +14,8 @@ class TestProject(models.Model):
     suit_number = models.BigIntegerField(default=0)
     last_modified = models.DateTimeField(auto_now=True)
     # owner
-    owner = models.CharField(max_length=32)
+    owner = models.ForeignKey('auth.User', related_name='testProjects', on_delete=models.CASCADE)
+    highlighted = models.TextField()
     #描述
     description = models.CharField(max_length=256)
 
@@ -20,6 +24,18 @@ class TestProject(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        """
+        Use the `pygments` library to create a highlighted HTML
+        representation of the code snippet.
+        """
+        # lexer = get_lexer_by_name(self.language)
+        # linenos = self.linenos and 'table' or False
+        # options = self.title and {'title': self.title} or {}
+        # formatter = HtmlFormatter(style=self.style, linenos=linenos, full=True, **options)
+        # self.highlighted = highlight(self.code, lexer, formatter)
+        super(TestProject, self).save(*args, **kwargs)
 
 class TestSuit(models.Model):
     test_project = models.ForeignKey(TestProject, on_delete=models.CASCADE, default='')

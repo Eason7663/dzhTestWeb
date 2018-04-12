@@ -5,11 +5,13 @@
 @file: serializers.py
 @time: 2018/04/08
 """
+from django.contrib.auth.models import User
 from rest_framework import serializers
 from polls.models import TestProject
 import time
 
 class TestProjectSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
     class Meta:
         model = TestProject
         fields = ('name','suit_number','is_enable','owner','description')
@@ -49,3 +51,12 @@ class TestProjectSerializer(serializers.ModelSerializer):
 #         instance.description = validated_data.get('last_modified',instance.description)
 #         instance.save()
 #         return instance
+
+
+
+class UserSerializer(serializers.ModelSerializer):
+    testProjects = serializers.PrimaryKeyRelatedField(many=True, queryset=TestProject.objects.all())
+
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'testProjects')
