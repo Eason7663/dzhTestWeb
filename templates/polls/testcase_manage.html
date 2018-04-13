@@ -3,122 +3,131 @@
 
     <div class="container theme-showcase" role="main">
 
-      <!--case 表单-->
-      <div class="page-header">
-        <!-- 搜索功能-->
-        <div id="navbar" class="navbar-collapse collapse" align="right">
-          <form class="navbar-form" method="get" action="/search_case/">
-            <div class="form-group">
-              <input name="phone" type="text" placeholder="Case Name" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">搜索</button>
-          </form>
-        </div><!--/.navbar-collapse -->
-      </div>
-
-      <!--列表显示 -->
-      <div class="row">
-        <div class="col-md-9">
-          <table class="table table-striped">
-            <thead>
-                <col></col>
-                <col></col>
-                <col></col>
-                <col></col>
-                <col width="20%"></col>
-                <col width="20%"></col>
-                <col width="20%"></col>
-                <col></col>
-                <col></col>
-              <tr>
-                <th>id</th>
-                <th>组件</th>
-                <th>名称</th>
-                <th>状态</th>
-                <th>path</th>
-                <th>param</th>
-                <th>result</th>
-                <th>测试报告</th>
-                <th>执行</th>
-              </tr>
-            </thead>
-            <tbody>
-                {% for tc in testcases %}
-                    <tr>
-                      <td >{{ tc.id }}</td>
-                      <td >{{ tc.test_suit }}</td>
-                      <td >{{ tc.name }}</td>
-                      <td >{{ tc.is_enable }}</td>
-                      <td >{{ tc.url_path }}</td>
-                      <td >{{ tc.url_param }}</td>
-                      <td >{{ tc.real_Result }}</td>
-                      <td >
-                          <a id="report_{{ tc.id }}" target="_blank">Null</a>
-                      </td>
-                      <td>
-                        <button id="fat-btn{{ tc.id }}" class="btn btn-primary" data-loading-text="Loading..."
-                            type="button" onclick="loadXMLDoc({{ tc.id }})"> 执行
-                        </button>
-                          <script type="text/javascript">
-                            function loadXMLDoc(tcid)
-                            {
-                                exec_button = document.getElementById("fat-btn"+ tcid);
-                                report_button = document.getElementById("report_" + tcid);
-                                exec_button.innerHTML="执行中...";
-                                var xmlhttp;
-                                if (window.XMLHttpRequest)
-                                  {// code for IE7+, Firefox, Chrome, Opera, Safari
-                                  xmlhttp=new XMLHttpRequest();
-                                  }
-                                else
-                                  {// code for IE6, IE5
-                                  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                                  }
-                                  xmlhttp.open("GET","/execute_case/"+ tcid ,true);
-                                  xmlhttp.send();
-                                  //alert(xmlhttp.readyState + "\n" + xmlhttp.status);
-                                  xmlhttp.onreadystatechange = function(tcid)
-                                      {
-                                          if (xmlhttp.readyState === 4 && xmlhttp.status === 200){
-                                              if(xmlhttp.responseText === "pass"){
-                                                exec_button.className = "btn btn-success";
-                                              }
-                                              if(xmlhttp.responseText === "failed"){
-                                                exec_button.className = "btn btn-danger";
-                                              }
-                                              exec_button.innerHTML = xmlhttp.responseText;
-                                              report_button.innerHTML = "Report";
-                                              report_button.setAttribute("href","#"+tcid);
-                                          }
-                                      };
-
-                            }
-                          </script>
-                      </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-          </table>
+        <!--case 表单-->
+        <div class="page-header">
+            <!-- 搜索功能-->
+            <div id="navbar" class="navbar-collapse collapse" align="right">
+                <form class="navbar-form" method="get" action="/search_case/">
+                    <div class="form-group">
+                        <input name="phone" type="text" placeholder="Case Name" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-success">搜索</button>
+                </form>
+            </div><!--/.navbar-collapse -->
         </div>
-      </div>
 
-      <!-- 列表分页器 -->
-    <div class="pagination">
+        <!--列表显示 -->
+        <div class="row">
+            <div class="col-md-9">
+                <table class="table table-striped">
+                    <thead>
+                    <col></col>
+                    <col></col>
+                    <col></col>
+                    <col></col>
+                    <col width="20%"></col>
+                    <col width="20%"></col>
+                    <col width="20%"></col>
+                    <col></col>
+                    <col></col>
+                    <tr>
+                        <th>id</th>
+                        <th>组件</th>
+                        <th>名称</th>
+                        <th>状态</th>
+                        <th>path</th>
+                        <th>param</th>
+                        <th>result</th>
+                        <th>测试报告</th>
+                        <th>执行</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for tc in testcases %}
+                        <tr>
+                            <td>{{ tc.id }}</td>
+                            <td>{{ tc.test_suit }}</td>
+                            <td>{{ tc.name }}</td>
+                            <td>{{ tc.is_enable }}</td>
+                            <td>{{ tc.url_path }}</td>
+                            <td>{{ tc.url_param }}</td>
+                            <td>{{ tc.real_Result }}</td>
+                            <td>
+                                <a id="report_{{ tc.id }}" target="_blank">Null</a>
+                            </td>
+                            <td>
+                                <button id="fat-btn{{ tc.id }}" class="btn btn-primary" data-loading-text="Loading..."
+                                        type="button" onclick="loadXMLDoc({{ tc.id }})"> 执行
+                                </button>
+                                <script type="text/javascript">
+                                    function loadXMLDoc(tcid) {
+
+                                        exec_button = document.getElementById("fat-btn" + tcid);
+                                        report_button = document.getElementById("report_" + tcid);
+                                        exec_button.innerHTML = "执行中...";
+                                        var xmlhttp;
+                                        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                                            xmlhttp = new XMLHttpRequest();
+                                        }
+                                        else {// code for IE6, IE5
+                                            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                                        }
+
+
+                                        function request(tcid, exec_button) {
+                                            var temptcid = tcid;
+                                            var button = exec_button;
+                                            return function () {
+                                                xmlhttp.open("GET", "/execute_case/" + temptcid, true);
+                                                xmlhttp.send();
+                                                //alert(xmlhttp.readyState + "\n" + xmlhttp.status);
+                                                xmlhttp.onreadystatechange = function (tcid) {
+
+                                                    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                                                        if (xmlhttp.responseText === "pass") {
+                                                            button.className = "btn btn-success";
+                                                        }
+                                                        if (xmlhttp.responseText === "failed") {
+                                                            button.className = "btn btn-danger";
+                                                        }
+                                                        button.innerHTML = xmlhttp.responseText;
+                                                        report_button.innerHTML = "Report";
+                                                        report_button.setAttribute("href", "#" + temptcid);
+                                                    }
+                                                };
+                                            }
+                                        }
+
+                                        var req = request(tcid, exec_button);
+                                        req();
+
+                                    }
+                                </script>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 列表分页器 -->
+        <div class="pagination">
       <span class="step-links">
         {% if guests.has_previous %}
-          <a href="?phone={{ phone }}&page={{ guests.previous_page_number }}">previous</a>
+            <a href="?phone={{ phone }}&page={{ guests.previous_page_number }}">previous</a>
         {% endif %}
           <span class="current">
             Page {{ guests.number }} of {{ guests.paginator.num_pages }}.
           </span>
-        {% if guests.has_next %}
-          {% if phone %}
-            <a href="?phone={{ phone }}&page={{ guests.next_page_number }}">next</a>
-          {% else %}
-           <a href="?page={{ guests.next_page_number }}">next</a>
+          {% if guests.has_next %}
+              {% if phone %}
+                  <a href="?phone={{ phone }}&page={{ guests.next_page_number }}">next</a>
+              {% else %}
+                  <a href="?page={{ guests.next_page_number }}">next</a>
+              {% endif %}
           {% endif %}
-        {% endif %}
       </span>
-    </div>
+        </div>
 
 {% endblock %}
