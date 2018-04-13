@@ -72,16 +72,14 @@
                                         else {// code for IE6, IE5
                                             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                                         }
-
-
-                                        function request(tcid, exec_button) {
+                                        function request(tcid, exec_button, report_button) {
                                             var temptcid = tcid;
                                             var button = exec_button;
                                             return function () {
                                                 xmlhttp.open("GET", "/execute_case/" + temptcid, true);
                                                 xmlhttp.send();
                                                 //alert(xmlhttp.readyState + "\n" + xmlhttp.status);
-                                                xmlhttp.onreadystatechange = function (tcid) {
+                                                xmlhttp.onreadystatechange = function () {
 
                                                     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
                                                         if (xmlhttp.responseText === "pass") {
@@ -98,7 +96,7 @@
                                             }
                                         }
 
-                                        var req = request(tcid, exec_button);
+                                        var req = request(tcid, exec_button,report_button);
                                         req();
 
                                     }
