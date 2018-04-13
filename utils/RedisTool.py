@@ -17,24 +17,24 @@ import time
 def delKeys(hostip, keyPrefix):
     '''删除指定前缀的key'''
     for ip in hostip:
-        print ip
+        print(ip)
         for key, value in ip.items():
-            print "key : " + str(key)
-            print "value : " + str(value)
+            print("key : " + str(key))
+            print("value : " + str(value))
 
             r = redis.Redis(host=key, port=value, db=0)
             for pre in keyPrefix:
 
                 list = r.keys(pre)
                 if len(list) == 0:
-                    print "Not found:" + str(pre)
+                    print("Not found:" + str(pre))
                     # time.sleep(3)
                 else:
                     for i in list:
-                        print i
+                        print(i)
                         r.delete(i)
 
-                    print len(list)
+                    print(len(list))
 
 
 def findMaster(clusterIp):

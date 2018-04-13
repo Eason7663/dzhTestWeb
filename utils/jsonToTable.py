@@ -15,8 +15,8 @@
 from json2table import convert
 import requests
 from json2html import *
-reload(sys)
-sys.setdefaultencoding('utf-8')
+# reload(sys)
+# sys.setdefaultencoding('utf-8')
 from utils.cmpKeys import CmpKeys
 
 def getTableHead(table,result,pre = ""):
@@ -67,5 +67,5 @@ if __name__ == "__main__":
 
     ck = CmpKeys(r.json(),r.json())
     ck.cmpJsonTable()
-    print ck.isSameTable()
+    print(ck.isSameTable())
 

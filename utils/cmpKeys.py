@@ -144,14 +144,14 @@ if __name__ == "__main__":
     r2 = requests.get("http://10.15.144.72/markettrend/gegu/min?token=00000001%3A1607826853%3Ad3ebda847e7e5a69d22f31f433272135aeda60fc&obj=SH000001")
     jsn2 = r2.json()
     ck = CmpKeys(jsn1,jsn2)
-    print r1.json()
-    print r2.json()
+    print(r1.json())
+    print(r2.json())
     # result = set()
     # CmpKeys.getKeysDict(r.json(), result)
     # print result
     ck.cmpJsonKeys()
-    print ck.getDiff()
-    print "Same: " + str(ck.isSame())
-    print "Difference: " + str(ck.isDiff())
-    print ck.isDifference
+    print(ck.getDiff())
+    print("Same: " + str(ck.isSame()))
+    print("Difference: " + str(ck.isDiff()))
+    print(ck.isDifference)
 
