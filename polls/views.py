@@ -23,12 +23,6 @@ import time
 
 # 首页(登录)
 def index(request):
-    # tp = TestProject()
-    # tp.save()
-    # return HttpResponse('id = {}'.format(tp.name))
-
-    # return render(request,'index.html')
-
     return render(request, "polls/index.html")
 
 # 登录动作
@@ -44,7 +38,7 @@ def login_action(request):
         user = auth.authenticate(username = username, password = password)
         if user is not None:
             auth.login(request, user) # 验证登录
-            response = HttpResponseRedirect('/testproject_manage/') # 登录成功跳转发布会管理
+            response = HttpResponseRedirect('/testproject_manage/') # 登录成功跳转home页面
             request.session['username'] = username    # 将 session 信息写到服务器
             return response
             # return HttpResponse('HELLO')
@@ -56,8 +50,8 @@ def login_action(request):
 #test project管理页面
 @login_required
 def testproject_manage(request):
-    testprojects_list = TestProject.objects.all()
     username = request.session.get('username', '')
+    testprojects_list = TestProject.objects.filter(owner=username)
     return render(request, "polls/testproject_manage.html", {"user": username,"testprojects":testprojects_list})
 
 #test suit管理页面
@@ -115,51 +109,51 @@ def execute_case_action(request,case_id):
     if(case_id == "2"):
         return HttpResponse("pass")
 
-#返回json格式test project
-@api_view(['GET','POST'])
-def testProject_list(request):
-    """
-    List all testproject, or create a new testproject.
-    :param request:
-    :return:
-    """
-    if request.method == 'GET':
-        testProject = TestProject.objects.all()
-        serializer = TestProjectSerializer(testProject,many=True)
-        return Response(serializer.data)
-    elif request.method == 'POST':
-        serializer = TestProjectSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            # serializer.data 数据创建成功后所有数据
-            return Response(serializer.data,status=status.HTTP_201_CREATED)
-        # serializer.errors 错误信息
-        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+# #返回json格式test project
+# @api_view(['GET','POST'])
+# def testProject_list(request):
+#     """
+#     List all testproject, or create a new testproject.
+#     :param request:
+#     :return:
+#     """
+#     if request.method == 'GET':
+#         testProject = TestProject.objects.all()
+#         serializer = TestProjectSerializer(testProject,many=True)
+#         return Response(serializer.data)
+#     elif request.method == 'POST':
+#         serializer = TestProjectSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             # serializer.data 数据创建成功后所有数据
+#             return Response(serializer.data,status=status.HTTP_201_CREATED)
+#         # serializer.errors 错误信息
+#         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+#
+#
+# @api_view(['GET','POST'])
+# def testProject_detail(request, pk):
+#     """
+#     Retrieve, update or delete a code snippet.
+#     """
+#     try:
+#         testProject = TestProject.objects.get(pk=pk)
+#     except TestProject.DoesNotExist:
+#         return Response(status=status.HTTP_404_NOT_FOUND)
+#     if request.method == 'GET':
+#         serializer = TestProjectSerializer(testProject)
+#         return Response(serializer.data)
+#     elif request.method == 'PUT':
+#         serializer = TestProjectSerializer(testProject, data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#     elif request.method == 'DELETE':
+#         testProject.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT)
 
-
-@api_view(['GET','POST'])
-def testProject_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        testProject = TestProject.objects.get(pk=pk)
-    except TestProject.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-    if request.method == 'GET':
-        serializer = TestProjectSerializer(testProject)
-        return Response(serializer.data)
-    elif request.method == 'PUT':
-        serializer = TestProjectSerializer(testProject, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    elif request.method == 'DELETE':
-        testProject.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-from rest_framework.views import APIView
+# from rest_framework.views import APIView
 # class TestProjectList(APIView):
 #     #APIView实际继承django总的View
 #     #from django.views.generic import View
@@ -215,10 +209,13 @@ from polls.permissions import IsOwnerOrReadOnly
 class TestProjectList(generics.ListCreateAPIView):
     queryset = TestProject.objects.all()
     serializer_class = TestProjectSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly,)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+    # def get(self, request, *args, **kwargs):
+    #     return Response(request.session['username'])
 
 class TestProjectDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = TestProject.objects.all()

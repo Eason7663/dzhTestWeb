@@ -17,9 +17,6 @@ import argparse
 import json
 import sys
 
-reload(sys)
-sys.setdefaultencoding('utf-8')
-
 def parseArgs():
     description = 'This program is used to output the differences of keys of two json data.'
     parser = argparse.ArgumentParser(description=description)
@@ -64,10 +61,10 @@ def diffKeys(json1, json2):
     keys2 = parseKeys(json2)
     keyset1 = set(keys1)
     for key in keyset1:
-        print key
+        print(key)
     keyset2 = set(keys2)
     for key in keyset2:
-        print key
+        print(key)
     return keyset1.difference(keyset2)
 
 
@@ -144,7 +141,7 @@ def testParseKeys():
     tesParsetKeysSingle({"code": 200, "msg": "ok", "list": [{"id": 20, "no":"115"}], "extra":{"size": 20, "info": {"owner": "qin"}}}, ['code', 'msg', 'list', 'list..id', 'list..no', 'extra', 'extra.size', 'extra.info', 'extra.info.owner'])
     tesParsetKeysSingle({'msg': 'ok', 'code': 200, 'list': [{'items': [{'price': 21, 'infos': {'feature': ''}, 'name': 'n1'}], 'id': 20, 'no': '1000020'}], 'metainfo': {'total': 20, 'info': {'owner': 'qinshu', 'parts': [{'count': 13, 'time': {'start': 1230002456, 'end': 234001234}}]}}}, ['msg', 'code', 'list', 'list..items', 'list..items..price', 'list..items..infos', 'list..items..infos.feature', 'list..items..name','list..id', 'list..no',  'metainfo', 'metainfo.total', 'metainfo.info', 'metainfo.info.owner', 'metainfo.info.parts', 'metainfo.info.parts..count', 'metainfo.info.parts..time' ,'metainfo.info.parts..time.start', 'metainfo.info.parts..time.end'])
 
-    print 'testPassed'
+    print('testPassed')
 
 
 def test():
@@ -164,11 +161,11 @@ if __name__ == "__main__":
     json1 = json.loads(content1)
     json2 = json.loads(content2)
 
-    print "keys in json_data_v2: "
-    print parseKeys(json2)
+    print("keys in json_data_v2: ")
+    print(parseKeys(json2))
 
-    print 'keys in json_data_v1 yet not in json_data_v2: '
-    print diffKeys(json1, json2)
+    print('keys in json_data_v1 yet not in json_data_v2: ')
+    print(diffKeys(json1, json2))
 
-    print 'keys in json_data_v2 yet not in json_data_v1: '
-    print diffKeys(json2, json1)
+    print('keys in json_data_v2 yet not in json_data_v1: ')
+    print(diffKeys(json2, json1))

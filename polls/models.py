@@ -14,13 +14,12 @@ class TestProject(models.Model):
     suit_number = models.BigIntegerField(default=0)
     last_modified = models.DateTimeField(auto_now=True)
     # owner
-    owner = models.ForeignKey('auth.User', related_name='testProjects', on_delete=models.CASCADE)
-    highlighted = models.TextField()
+    owner = models.CharField(max_length=64)
     #描述
     description = models.CharField(max_length=256)
 
     class Meta:
-        ordering = ('name',)
+        ordering = ('id',)
 
     def __str__(self):
         return self.name

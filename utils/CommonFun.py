@@ -48,5 +48,5 @@ def CompareJsonTable(expected,real):
     return ck.isSameTable()
 
 if __name__ == "__main__":
-    print GetYunToken()
+    print(GetYunToken())
 
