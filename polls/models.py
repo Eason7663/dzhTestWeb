@@ -63,6 +63,7 @@ class TestCase(models.Model):
     pass_or_fail = models.BooleanField(default=None)
     description = models.CharField(max_length=256)
     on_going = models.BooleanField(default=True)
+    url = models.URLField(default=None)
 
     def __str__(self):
         return self.name

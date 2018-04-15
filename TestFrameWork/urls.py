@@ -24,13 +24,17 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('polls.urls')),
     # url(r'^polls/', include('polls.urls')),
-    url(r'^accounts/login/$', include('polls.urls')),
+    url(r'^accounts/login/', include('polls.urls')),
     url(r'^login_action/$', views.login_action),
+    url(r'^logout/$', views.logout_action),
     url(r'^testproject_manage/$', views.testproject_manage),
     url(r'^testsuit_manage/$', views.testsuit_manage),
+    # url(r'^testcase_manage/$', views.testcase_manage),
     url(r'^testcase_manage/$', views.testcase_manage),
     url(r'^search_project_name/$', views.search_project_name),
     url(r'^help_document/$', views.help_document),
+    # url(r'^execute_case/(?P<case_id>[0-9]+)/$', include('polls.urls')),
     url(r'^execute_case/(?P<case_id>[0-9]+)/$', views.execute_case_action),
+    url(r'^execute_case/detail/(?P<case_id>[0-9]+)/$', views.execute_case_detail_action),
 ]
 # ] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

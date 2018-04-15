@@ -25,6 +25,7 @@ import time
 def index(request):
     return render(request, "polls/index.html")
 
+
 # 登录动作
 @csrf_protect
 def login_action(request):
@@ -46,6 +47,11 @@ def login_action(request):
             return render(request,"polls/index.html",{"error":"username or password error!"})
     # 防止直接通过浏览器访问 /login_action/ 地址。
     return render(request,"index.html")
+
+@login_required
+def logout_action(request):
+    auth.logout(request)
+    return render(request, "polls/index.html")
 
 #test project管理页面
 @login_required
@@ -101,13 +107,24 @@ def help_document(request,args):
     return_dict = {'title': atc.title, 'category': atc.category, 'date': atc.date_time, 'content': atc.content}
     return HttpResponse(template.render(return_dict, request))
 
+
+from conf import constConf
+from appaction.caseExecutor import caseExecutor
 # 执行用例
 def execute_case_action(request,case_id):
-    time.sleep(1)
-    if(case_id == "1"):
-        return HttpResponse("failed")
-    if(case_id == "2"):
-        return HttpResponse("pass")
+    # time.sleep(1)
+    testCase = TestCase.objects.get(id=case_id)
+    ce = caseExecutor(constConf.yunconsole_config,testCase)
+    ce.executor()
+    return HttpResponse(testCase.pass_or_fail)
+#返回单个用例执行结果
+def execute_case_detail_action(request,case_id):
+    testCase = TestCase.objects.get(id=case_id)
+    response = {}
+    response['url'] = testCase.url
+    response['result'] = testCase.real_Result
+    return JsonResponse(response)
+
 
 # #返回json格式test project
 # @api_view(['GET','POST'])

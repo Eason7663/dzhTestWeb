@@ -44,7 +44,7 @@ class CmpKeys():
     def getTable(jsn,result):
         def getTableHead(table, result, pre=""):
             # print table
-            if isinstance(table, unicode):
+            if isinstance(table, Unicode):
                 tmp = pre + '.' + str(table).encode("utf-8")
                 result.add(tmp)
             if isinstance(table, dict):
