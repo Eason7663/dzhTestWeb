@@ -19,15 +19,33 @@ class caseExecutor():
         self.testCase = testCase
         self.config = config
 
+    def getYunToken(self):
+        path = "/token/access"
+        url = self.config['protocol'] + self.config['host'] + path
+        keys = {'appid', 'secret_key'}
+        param = {key: value for key, value in self.config.items() if key in keys}
+        response = requests.get(url, param)
+        yunToken = response.json()['Data']['RepDataToken'][0]['token']
+        # pattern = re.compile('token')
+        # yunToken = pattern.match(response.text)
+        # print(yunToken)
+        # print(response.text)
+        result = {}
+        result["token"]=yunToken
+        return result
+
     def getURL(self):
         url = self.config['protocol'] + self.config['host'] + self.testCase.url_path
         return url
     def getParam(self):
-        return self.testCase.url_param
+        param= json.loads(self.testCase.url_param)
+        print(self.getYunToken())
+        tmp= {**param,**self.getYunToken()}
+        return tmp
 
     def executor(self):
-        # print(json.loads(self.getParam()))
-        response = requests.get(self.getURL(),json.loads(self.getParam()))
+        # # print(json.loads(self.getParam()))
+        response = requests.get(self.getURL(),self.getParam())
         expected = json.loads(self.testCase.expected_result)
         real = response.json()
         ck = CmpKeys(expected,real)
@@ -37,4 +55,5 @@ class caseExecutor():
         self.testCase.url = response.url
         self.testCase.save()
         # print(response.url)
+        # print(self.getParam())
 
