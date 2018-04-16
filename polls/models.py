@@ -1,9 +1,10 @@
 from __future__ import unicode_literals
 from django.db import models
-from django.contrib.postgres.fields import JSONField
+
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters.html import HtmlFormatter
 from pygments import highlight
+import jsonfield
 
 # Create your models here.
 class TestProject(models.Model):
@@ -58,13 +59,16 @@ class TestCase(models.Model):
     name = models.CharField(max_length=64)
     is_enable = models.BooleanField(default=True)
     url_path = models.CharField(max_length=64)
-    url_param = models.TextField()
-    real_Result = models.TextField()
-    expected_result = models.TextField()
+    # url_param = models.TextField()
+    url_param = jsonfield.JSONField()
+    # real_Result = models.TextField()
+    real_Result = jsonfield.JSONField()
+    # expected_result = models.TextField()
+    expected_result = jsonfield.JSONField()
     pass_or_fail = models.BooleanField(default=None)
     description = models.CharField(max_length=256)
     on_going = models.BooleanField(default=True)
-    url = models.URLField(default=None)
+    url = models.URLField(default="http://127.0.0.1:8001/")
 
     def __str__(self):
         return self.name

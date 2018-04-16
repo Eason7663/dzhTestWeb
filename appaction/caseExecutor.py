@@ -38,15 +38,15 @@ class caseExecutor():
         url = self.config['protocol'] + self.config['host'] + self.testCase.url_path
         return url
     def getParam(self):
-        param= json.loads(self.testCase.url_param)
-        print(self.getYunToken())
+        param= self.testCase.url_param
+        # print(self.getYunToken())
         tmp= {**param,**self.getYunToken()}
         return tmp
 
     def executor(self):
         # # print(json.loads(self.getParam()))
         response = requests.get(self.getURL(),self.getParam())
-        expected = json.loads(self.testCase.expected_result)
+        expected = self.testCase.expected_result
         real = response.json()
         ck = CmpKeys(expected,real)
         ck.cmpJsonKeys()

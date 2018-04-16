@@ -1,23 +1,43 @@
 {% extends "polls/base.html" %}
 {% block content %}
 
-    <div class="container theme-showcase" role="main">
-
-        <!--case 表单-->
+    <div class="container" role="main">
         <div class="page-header">
-            <!-- 搜索功能-->
-            <div id="navbar" class="navbar-collapse collapse" align="right">
-                <form class="navbar-form" method="get" action="/search_case/">
-                    <div class="form-group">
-                        <input name="phone" type="text" placeholder="Case Name" class="form-control">
-                    </div>
-                    <button type="submit" class="btn btn-success">搜索</button>
-                </form>
-            </div><!--/.navbar-collapse -->
+            <!--case 表单-->
+            <div class="container">
+                <div id="add" style="float: left;">
+                    <form class="form-inline" method="get" action="/testcase/add">
+                        <div class="form-group">
+                            <label class="sr-only" for="name">名称</label>
+                            <input name="casefilepath" type="text" class="form-control" id="name" placeholder="请输入名称">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="inputfile">文件输入</label>
+                            <input type="file" id="inputfile">
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox">请打勾
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </form>
+                </div>
+                <!-- 搜索功能-->
+                <div id="search" style="float: right">
+                    <form class="form-inline" method="get" action="/search_case">
+                        <div class="form-group">
+                            <input name="phone" type="text" placeholder="Case Name" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-success">搜索</button>
+                    </form>
+                </div>
+                <!--/.navbar-collapse -->
+            </div>
         </div>
 
         <!--列表显示 -->
-        <div style="overflow-wrap: break-word">
+        <div class="container" style="overflow-wrap: break-word">
             <table class="table table-strip table-hover">
                 <colgroup>
                     <col style="width: 30px"></col>

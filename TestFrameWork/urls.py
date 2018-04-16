@@ -34,6 +34,8 @@ urlpatterns = [
     url(r'^search_project_name/$', views.search_project_name),
     url(r'^help_document/$', views.help_document),
     # url(r'^execute_case/(?P<case_id>[0-9]+)/$', include('polls.urls')),
+    url(r'^testcase/add', views.add_case_action),
+    url(r'^testcase/add/post', views.add_post_case_action),
     url(r'^execute_case/(?P<case_id>[0-9]+)/$', views.execute_case_action),
     url(r'^execute_case/detail/(?P<case_id>[0-9]+)/$', views.execute_case_detail_action),
 ]

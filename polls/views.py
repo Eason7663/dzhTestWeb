@@ -19,6 +19,14 @@ from polls.models import TestProject, TestSuit,TestCase
 from polls.serializers import TestProjectSerializer
 
 import time
+@login_required
+def add_case_action(request):
+    return render(request,"polls/testcase_add.html")
+
+@csrf_exempt
+@login_required
+def add_post_case_action(request):
+    return render(request, "polls/index.html")
 
 
 # 首页(登录)
