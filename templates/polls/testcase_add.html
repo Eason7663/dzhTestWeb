@@ -3,21 +3,19 @@
 
     <div class="container" role="main">
         <h1>Add TestCase</h1>
-        <form class="form" method="post" action="/testcase/add/post">
+        <form class="form" method="post" action="/testcase/post/add">
             {% csrf_token %}
-            <fieldset>
+{#            <fieldset>#}
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Test Suit:</label>
-                    {#                    <div class="col-sm-4">#}
-                    <select class="form-control" style="width:200px;">
+                    <select name="suitSelect" class="form-control" style="width:200px;">
                         <option>suit1</option>
                     </select>
-                    {#                    </div>#}
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Name:</label>
                     <div class="controls">
-                        <input type="text" placeholder="case name" class="input-group" style="width: 200px">
+                        <input name="nameText" type="text" placeholder="case name" class="input-group" style="width: 200px">
                         <p class="help-block"></p>
                     </div>
                 </div>
@@ -26,7 +24,7 @@
                     <div class="controls">
                         <!-- Multiple Checkboxes -->
                         <label class="checkbox">
-                            <input type="checkbox" value="Is enable">
+                            <input name="isEnableCheckBox" type="checkbox" value="Is enable">
                             Is enable
                         </label>
                     </div>
@@ -35,8 +33,8 @@
                     <!-- Text input-->
                     <label class="col-sm-2 control-label" for="input01">Url path:</label>
                     <div class="controls">
-                        <input type="text" placeholder="" class="input-group" style="width: 200px">
-                        <p class="help-block">like"/token/acess"</p>
+                        <input name="urlPathText" type="text" placeholder="" class="input-group" style="width: 200px">
+{#                        <p class="help-block">like"/token/acess"</p>#}
                     </div>
                 </div>
                 <div class="form-group">
@@ -44,7 +42,7 @@
                     <label class="col-sm-2 control-label">Url param:</label>
                     <div class="controls">
                         <div class="textarea">
-                            <textarea type="" class="" style="width: 200px;height: 200px">{}</textarea>
+                            <textarea name="urlParamText" type="" class="" style="width: 200px;height: 200px">{}</textarea>
                         </div>
                     </div>
                 </div>
@@ -53,7 +51,7 @@
                     <label class="col-sm-2 control-label">Real Result:</label>
                     <div class="controls">
                         <div class="textarea">
-                            <textarea type="" class="" style="width: 400px;height: 500px">{}</textarea>
+                            <textarea name="realResultTextArea" type="" class="" style="width: 400px;height: 500px">{}</textarea>
                         </div>
                     </div>
                 </div>
@@ -62,7 +60,7 @@
                     <label class="col-sm-2 control-label">Expected result:</label>
                     <div class="controls">
                         <div class="textarea">
-                            <textarea type="" class="" style="width: 400px;height: 500px">{}</textarea>
+                            <textarea name="expectedResultTextArea" type="" class="" style="width: 400px;height: 500px">{}</textarea>
                         </div>
                     </div>
                 </div>
@@ -71,7 +69,7 @@
                     <div class="controls">
                         <!-- Multiple Checkboxes -->
                         <label class="checkbox">
-                            <input type="checkbox" value="Pass or fail">
+                            <input name="passOrFailCheckBox" type="checkbox" value="Pass or fail">
                             Pass or fail
                         </label>
                     </div>
@@ -79,7 +77,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Description:</label>
                     <div class="controls">
-                        <input type="text" placeholder="description" class="input-group" style="width: 200px">
+                        <input name="descriptionText" type="text" placeholder="description" class="input-group" style="width: 200px">
                         <p class="help-block"></p>
                     </div>
                 </div>
@@ -88,7 +86,7 @@
                     <div class="controls">
                         <!-- Multiple Checkboxes -->
                         <label class="checkbox">
-                            <input type="checkbox" value="On going">
+                            <input name="onGoingCheckBox" type="checkbox" value="On going">
                             On going
                         </label>
                     </div>
@@ -96,11 +94,11 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Url:</label>
                     <div class="controls">
-                        <input type="text" placeholder="Url" class="input-group" style="width: 200px">
+                        <input name="urlText" type="text" placeholder="Url" class="input-group" style="width: 200px">
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">提交</button>
-            </fieldset>
+{#            </fieldset>#}
         </form>
     </div>
 

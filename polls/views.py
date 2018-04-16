@@ -23,10 +23,40 @@ import time
 def add_case_action(request):
     return render(request,"polls/testcase_add.html")
 
-@csrf_exempt
+from django.forms import Form
+# @csrf_exempt
 @login_required
 def add_post_case_action(request):
-    return render(request, "polls/index.html")
+    # return render(request, "polls/index.html")
+    form =
+    suit = request.POST.get('suitSelect','')
+    name = request.POST.get('nameText','')
+    isEnable = request.POST.get('isEnableCheckBox','')
+    print(isEnable)
+    urlPath = request.POST.get('urlPathText','')
+    urlParam = request.POST.get('urlParamText','')
+    realResult = request.POST.get('urlRealResultTextArea','')
+    expectedResult = request.POST.get('expectedResultTextArea','')
+    passOrFail = request.POST.get('passOrFailCheckBox','')
+    description = request.POST.get('descriptionText','')
+    onGoing = request.POST.get('onGoingCheckBox','')
+    url = request.POST.get('urlText','')
+    testcase = TestCase.objects.create(test_suit_id=TestSuit.objects.get(name=suit),
+                                       name=name,
+                                       isEnable=isEnable,
+                                       url_path=urlPath,
+                                       url_param=urlParam,
+                                       real_Result=realResult,
+                                       expected_result=expectedResult,
+                                       pass_or_fail=passOrFail,
+                                       description=description,
+                                       on_going=onGoing,
+                                       url=url)
+    testcase.save()
+    return HttpResponse("Hello")
+
+    # testcase = TestCase.objects.create()
+
 
 
 # 首页(登录)
