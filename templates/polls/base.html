@@ -1,5 +1,5 @@
-{% load static %}
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
@@ -11,52 +11,80 @@
     <link rel="icon" href="../../favicon.ico">
 
     <title>Test Manage System</title>
-    <style>
+
+    <!-- Bootstrap core CSS -->
+    {#    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">#}
+    {#    <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">#}
+    {#    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">#}
+    {#    <!-- Custom styles for this template -->#}
+    {#    <link href="//v3.bootcss.com/examples/theme/theme.css" rel="stylesheet">#}
+
+    <!-- 引入jQuery -->
+    {#    <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>#}
+    {#    <script src="//code.jquery.com/jquery-latest.js"></script>#}
+    <!-- 引入 Bootstrap -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/bootstrap-theme.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/bootstrap-theme.min.css' %}" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        html, body {width:100%;height:100%;}
         table {
             table-layout: fixed;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         }
 
         td {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+        }
+
+        nav {
+            background-color: #2e3c58;
+            {#font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif, "Rod";#}
+        {#border-color: #d40306;#}{#color: #eafdff;#}
+
         }
 
         body {
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
             font-size: 14px;
             line-height: 1.428571429;
-            color: #65acd6;
-            background-color: #b7dcff;
-        }
-
-        nav {
-
+            color: rgba(22, 22, 22, 0.9);
+            background-color: #f8fff4;
+            {#background-image: url("../../static/img/5-160119212953.jpg");#}
         }
     </style>
-    <!-- Bootstrap core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-{#    <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">#}
-    {#    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">#}
-    {#    <!-- Custom styles for this template -->#}
-    <link href="//v3.bootcss.com/examples/theme/theme.css" rel="stylesheet">
-
 </head>
 
 <body>
 
 <!-- 导航栏 -->
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="nav nav-inverse nav-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/testproject_manage/">Test Manage System</a>
+            <a style="color: #ffc109" class="navbar-brand" href="/testproject_manage/">Test Manage System</a>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
+        <div id="nav" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/testproject_manage/">Test Project</a></li>
+                <li><a href="/testproject_manage/">Test Project</a></li>
                 <li><a href="/testsuit_manage/">Test Suit</a></li>
                 <li><a href="/testcase_manage/">Test Case</a></li>
                 <li><a href="/help_document/">Help</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">DropDwon<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">a1</a></li>
+                        <li><a href="#">a22</a></li>
+                        <li><a href="#">Jaf Report</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">df</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">bg</a></li>
+                    </ul>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/{{ user }}/">{{ user }}</a></li>
@@ -82,8 +110,12 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+{#    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>#}
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="{% static 'js/jquery-3.3.1.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
 
 </body>
 

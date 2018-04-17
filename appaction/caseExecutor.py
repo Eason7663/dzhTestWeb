@@ -25,6 +25,7 @@ class caseExecutor():
         keys = {'appid', 'secret_key'}
         param = {key: value for key, value in self.config.items() if key in keys}
         response = requests.get(url, param)
+        print(response.url)
         yunToken = response.json()['Data']['RepDataToken'][0]['token']
         # pattern = re.compile('token')
         # yunToken = pattern.match(response.text)
@@ -39,16 +40,17 @@ class caseExecutor():
         return url
     def getParam(self):
         param= self.testCase.url_param
+        print(param)
         # print(self.getYunToken())
         tmp= {**param,**self.getYunToken()}
         return tmp
 
     def executor(self):
-        # # print(json.loads(self.getParam()))
         response = requests.get(self.getURL(),self.getParam())
         expected = self.testCase.expected_result
+        # print(expected)
         real = response.json()
-        ck = CmpKeys(expected,real)
+        ck = CmpKeys(real,expected)
         ck.cmpJsonKeys()
         self.testCase.pass_or_fail= ck.isSame()
         self.testCase.real_Result=real

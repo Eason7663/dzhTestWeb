@@ -23,7 +23,7 @@ import time
 @login_required
 def add_case_action(request):
     tcf = TestCaseForm(request.POST)
-    return render(request,"polls/testcase_add.html",{'form':tcf})
+    return render(request,"polls/testcase_add2.html",{'form':tcf})
 
 from django.forms import Form
 # @csrf_exempt

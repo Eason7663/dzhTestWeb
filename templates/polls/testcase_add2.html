@@ -1,0 +1,24 @@
+{% extends "polls/base.html" %}
+{% block content %}
+
+    <div class="container" role="main">
+        <h1>Add TestCase</h1>
+        <form class="form" method="post" action="/testcase/post/add">
+            {% csrf_token %}
+            {#            <fieldset>#}
+            {% for foo in form %}
+
+                <div class="row">
+                    <label class="col-md-1 control-label">Test Suit:</label>
+                    <div class="col-md-2 col-md-10">
+                        {{ foo }}
+                    </div>
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary">提交</button>
+            {#            </fieldset>#}
+        </form>
+    </div>
+
+{% endblock %}

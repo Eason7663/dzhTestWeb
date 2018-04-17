@@ -17,7 +17,7 @@ import json
 class CmpKeys():
     resultList = set()
 
-    def __init__(self,expected='',real=''):
+    def __init__(self,expected={},real={}):
         self.expected = expected
         self.expectedKey = set()
         self.real = real
@@ -139,10 +139,10 @@ class CmpKeys():
 
 
 if __name__ == "__main__":
-    r1 = requests.get("http://10.15.144.72/markettrend/index/kline?token=00000001%3A1607826853%3Ad3ebda847e7e5a69d22f31f433272135aeda60fc&obj=SH000001")
+    r1 = requests.get("http://gw.yundzh.com/token/access?appid=ab1c4cf2466e11e78e710242ac110008&secret_key=dIqKXbLNPV8A")
     jsn1 = r1.json()
     # r1= requests.get("http://10.15.144.72/markettrend/gegu/min?token=00000001%3A1607826853%3Ad3ebda847e7e5a69d22f31f433272135aeda60fc&obj=SH000001")
-    r2 = requests.get("http://10.15.144.72/markettrend/gegu/min?token=00000001%3A1607826853%3Ad3ebda847e7e5a69d22f31f433272135aeda60fc&obj=SH000001")
+    r2 = requests.get("http://gw.yundzh.com/token/access?appid=ab1c4cf2466e11e78e710242ac110008&secret_key=dIqKXbLNPV8A")
     # jsn1 = r1.json()
     jsn2 = r2.json()
     ck = CmpKeys(jsn1,jsn2)
