@@ -141,7 +141,9 @@ class CmpKeys():
 if __name__ == "__main__":
     r1 = requests.get("http://10.15.144.72/markettrend/index/kline?token=00000001%3A1607826853%3Ad3ebda847e7e5a69d22f31f433272135aeda60fc&obj=SH000001")
     jsn1 = r1.json()
+    # r1= requests.get("http://10.15.144.72/markettrend/gegu/min?token=00000001%3A1607826853%3Ad3ebda847e7e5a69d22f31f433272135aeda60fc&obj=SH000001")
     r2 = requests.get("http://10.15.144.72/markettrend/gegu/min?token=00000001%3A1607826853%3Ad3ebda847e7e5a69d22f31f433272135aeda60fc&obj=SH000001")
+    # jsn1 = r1.json()
     jsn2 = r2.json()
     ck = CmpKeys(jsn1,jsn2)
     print(r1.json())

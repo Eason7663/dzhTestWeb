@@ -5,100 +5,109 @@
         <h1>Add TestCase</h1>
         <form class="form" method="post" action="/testcase/post/add">
             {% csrf_token %}
-{#            <fieldset>#}
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Test Suit:</label>
-                    <select name="suitSelect" class="form-control" style="width:200px;">
-                        <option>suit1</option>
-                    </select>
+            {#            <fieldset>#}
+            <div class="row">
+                <label class="col-md-2">Test Suit:</label>
+                <div class="col-md-2">
+                    {{ form.test_suit }}
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Name:</label>
-                    <div class="controls">
-                        <input name="nameText" type="text" placeholder="case name" class="input-group" style="width: 200px">
-                        <p class="help-block"></p>
-                    </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 control-label">Name:</label>
+                <div class="col-sm-2 controls">
+                    {{ form.name }}
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"></label>
-                    <div class="controls">
-                        <!-- Multiple Checkboxes -->
-                        <label class="checkbox">
-                            <input name="isEnableCheckBox" type="checkbox" value="Is enable">
-                            Is enable
-                        </label>
-                    </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 control-label">Is enable</label>
+                <div class="col-sm-2 controls">
+                    {{ form.is_enable }}
                 </div>
-                <div class="form-group">
-                    <!-- Text input-->
-                    <label class="col-sm-2 control-label" for="input01">Url path:</label>
-                    <div class="controls">
-                        <input name="urlPathText" type="text" placeholder="" class="input-group" style="width: 200px">
-{#                        <p class="help-block">like"/token/acess"</p>#}
-                    </div>
+            </div>
+            <div class="row">
+                <!-- Text input-->
+                <label class="col-sm-2 control-label">Url path:</label>
+                <div class="col-sm-2 controls">
+                    {#                        <input name="urlPathText" type="text" placeholder="" class="input-group" style="width: 200px">#}
+                    {#                        <p class="help-block">like"/token/acess"</p>#}
+                    {{ form.url_path }}
+
                 </div>
-                <div class="form-group">
-                    <!-- Textarea -->
-                    <label class="col-sm-2 control-label">Url param:</label>
-                    <div class="controls">
-                        <div class="textarea">
-                            <textarea name="urlParamText" type="" class="" style="width: 200px;height: 200px">{}</textarea>
-                        </div>
-                    </div>
+            </div>
+            <div class="row">
+                <!-- Textarea -->
+                <label class="col-sm-2 control-label">Url param:</label>
+                <div class="col-sm-2 controls">
+                    {#                    <div class="textarea">#}
+                    {#                        <textarea name="urlParamText" type="" class="" style="width: 200px;height: 200px">{}</textarea>#}
+                    {#                    </div>#}
+                    {{ form.url_param }}
                 </div>
-                <div class="form-group">
-                    <!-- Textarea -->
-                    <label class="col-sm-2 control-label">Real Result:</label>
-                    <div class="controls">
-                        <div class="textarea">
-                            <textarea name="realResultTextArea" type="" class="" style="width: 400px;height: 500px">{}</textarea>
-                        </div>
-                    </div>
+            </div>
+            <div class="row">
+                <!-- Textarea -->
+                <label class="col-sm-2 control-label">Real Result:</label>
+                <div class="col-sm-2 controls">
+                    {#                    <div class="textarea">#}
+                    {#                        <textarea name="realResultTextArea" type="" class=""#}
+                    {#                                  style="width: 400px;height: 500px">{}</textarea>#}
+                    {#                    </div>#}
+                    {{ form.real_Result }}
                 </div>
-                <div class="form-group">
-                    <!-- Textarea -->
-                    <label class="col-sm-2 control-label">Expected result:</label>
-                    <div class="controls">
-                        <div class="textarea">
-                            <textarea name="expectedResultTextArea" type="" class="" style="width: 400px;height: 500px">{}</textarea>
-                        </div>
-                    </div>
+            </div>
+            <div class="row">
+                <!-- Textarea -->
+                <label class="col-sm-2 control-label">Expected result:</label>
+                <div class="col-sm-2 controls">
+                    {#                    <div class="textarea">#}
+                    {#                        <textarea name="expectedResultTextArea" type="" class=""#}
+                    {#                                  style="width: 400px;height: 500px">{}</textarea>#}
+                    {#                    </div>#}
+                    {{ form.expected_result }}
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"></label>
-                    <div class="controls">
-                        <!-- Multiple Checkboxes -->
-                        <label class="checkbox">
-                            <input name="passOrFailCheckBox" type="checkbox" value="Pass or fail">
-                            Pass or fail
-                        </label>
-                    </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 control-label">Pass or fail</label>
+                <div class="col-sm-2 controls">
+                    <!-- Multiple Checkboxes -->
+                    {#                    <label class="checkbox">#}
+                    {#                        <input name="passOrFailCheckBox" type="checkbox" value="Pass or fail">#}
+                    {#                        Pass or fail#}
+                    {#                    </label>#}
+                    {{ form.pass_or_fail }}
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Description:</label>
-                    <div class="controls">
-                        <input name="descriptionText" type="text" placeholder="description" class="input-group" style="width: 200px">
-                        <p class="help-block"></p>
-                    </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 control-label">Description:</label>
+                <div class="col-sm-2 controls">
+                    {#                    <input name="descriptionText" type="text" placeholder="description" class="input-group"#}
+                    {#                           style="width: 200px">#}
+                    {#                    <p class="help-block"></p>#}
+                    {{ form.description }}
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"></label>
-                    <div class="controls">
-                        <!-- Multiple Checkboxes -->
-                        <label class="checkbox">
-                            <input name="onGoingCheckBox" type="checkbox" value="On going">
-                            On going
-                        </label>
-                    </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 control-label">On going</label>
+                <div class="col-sm-2 controls">
+                    {#                    <!-- Multiple Checkboxes -->#}
+                    {#                    <label class="checkbox">#}
+                    {#                        <input name="onGoingCheckBox" type="checkbox" value="On going">#}
+                    {#                        On going#}
+                    {#                    </label>#}
+                    {{ form.on_going }}
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Url:</label>
-                    <div class="controls">
-                        <input name="urlText" type="text" placeholder="Url" class="input-group" style="width: 200px">
-                    </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 control-label">Url:</label>
+                {#                <div class="controls">#}
+                {#                    <input name="urlText" type="text" placeholder="Url" class="input-group" style="width: 200px">#}
+                {#                </div>#}
+                <div class="col-sm-2 control">
+                    {{ form.url }}
                 </div>
-                <button type="submit" class="btn btn-primary">提交</button>
-{#            </fieldset>#}
+            </div>
+            <button type="submit" class="btn btn-primary">提交</button>
+            {#            </fieldset>#}
         </form>
     </div>
 

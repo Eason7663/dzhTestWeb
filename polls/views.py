@@ -17,46 +17,27 @@ from django.views.decorators.csrf import csrf_protect
 
 from polls.models import TestProject, TestSuit,TestCase
 from polls.serializers import TestProjectSerializer
+from polls.forms import TestCaseForm
 
 import time
 @login_required
 def add_case_action(request):
-    return render(request,"polls/testcase_add.html")
+    tcf = TestCaseForm(request.POST)
+    return render(request,"polls/testcase_add.html",{'form':tcf})
 
 from django.forms import Form
 # @csrf_exempt
 @login_required
 def add_post_case_action(request):
-    # return render(request, "polls/index.html")
-    form =
-    suit = request.POST.get('suitSelect','')
-    name = request.POST.get('nameText','')
-    isEnable = request.POST.get('isEnableCheckBox','')
-    print(isEnable)
-    urlPath = request.POST.get('urlPathText','')
-    urlParam = request.POST.get('urlParamText','')
-    realResult = request.POST.get('urlRealResultTextArea','')
-    expectedResult = request.POST.get('expectedResultTextArea','')
-    passOrFail = request.POST.get('passOrFailCheckBox','')
-    description = request.POST.get('descriptionText','')
-    onGoing = request.POST.get('onGoingCheckBox','')
-    url = request.POST.get('urlText','')
-    testcase = TestCase.objects.create(test_suit_id=TestSuit.objects.get(name=suit),
-                                       name=name,
-                                       isEnable=isEnable,
-                                       url_path=urlPath,
-                                       url_param=urlParam,
-                                       real_Result=realResult,
-                                       expected_result=expectedResult,
-                                       pass_or_fail=passOrFail,
-                                       description=description,
-                                       on_going=onGoing,
-                                       url=url)
-    testcase.save()
-    return HttpResponse("Hello")
-
-    # testcase = TestCase.objects.create()
-
+    # if request
+    tcf = TestCaseForm(request.POST)
+    if tcf.is_valid():
+        print(tcf)
+        tcf.save()
+        return HttpResponse("hello")
+    return Response(tcf)
+    # else:
+        # return render(request, "polls/testcase.html", {'form': tcf})
 
 
 # 首页(登录)
@@ -124,26 +105,27 @@ def search_project_name(request):
 # help文档
 @login_required
 def help_document(request,args):
+    return HttpResponse("Preparing!")
     # detect if args is well-format
 
-    try:
-        article_id = int(args)
-    except:
-        return HttpResponse("Invalid Article Number...")
-
-    article_list = Article.objects.all()
-    if article_id not in range(1, len(article_list) + 1):
-        return HttpResponse("Invalid Article Number...")
-
-    atc = Article.objects.get(id=article_id)
-    template = loader.get_template('show_atc.html')
-
-    # show markdown text
-    mfile = open('./../../django-markdown-deux.md', 'r').read()
-    atc.content = mfile
-
-    return_dict = {'title': atc.title, 'category': atc.category, 'date': atc.date_time, 'content': atc.content}
-    return HttpResponse(template.render(return_dict, request))
+    # try:
+    #     article_id = int(args)
+    # except:
+    #     return HttpResponse("Invalid Article Number...")
+    #
+    # article_list = Article.objects.all()
+    # if article_id not in range(1, len(article_list) + 1):
+    #     return HttpResponse("Invalid Article Number...")
+    #
+    # atc = Article.objects.get(id=article_id)
+    # template = loader.get_template('show_atc.html')
+    #
+    # # show markdown text
+    # mfile = open('./../../django-markdown-deux.md', 'r').read()
+    # atc.content = mfile
+    #
+    # return_dict = {'title': atc.title, 'category': atc.category, 'date': atc.date_time, 'content': atc.content}
+    # return HttpResponse(template.render(return_dict, request))
 
 
 from conf import constConf
