@@ -104,7 +104,7 @@ def search_project_name(request):
 
 # help文档
 @login_required
-def help_document(request,args):
+def help_document(request):
     return HttpResponse("Preparing!")
     # detect if args is well-format
 
