@@ -13,6 +13,7 @@ from conf.constConf import yunconsole_config
 from utils.cmpKeys import CmpKeys
 import json
 import requests
+from utils.verificator import VerifyJson
 
 class caseExecutor():
     def __init__(self,config,testCase):
@@ -47,13 +48,22 @@ class caseExecutor():
 
     def executor(self):
         response = requests.get(self.getURL(),self.getParam())
+        #
         expected = self.testCase.expected_result
+        # print(type(expected))
+        # if isinstance(expected, str):  # 首先判断变量是否为字符串
+        #     try:
+        #         json.loads(expected)
+        #     except ValueError:
+        #         print("False1")
+        #     print("True")
+        # else:
+        #     print("False2")
         # print(expected)
         real = response.json()
-        ck = CmpKeys(real,expected)
-        ck.cmpJsonKeys()
-        self.testCase.pass_or_fail= ck.isSame()
-        self.testCase.real_Result=real
+        ck = VerifyJson(expected,real)
+        self.testCase.pass_or_fail = ck.isSame
+        self.testCase.real_Result = real
         self.testCase.url = response.url
         self.testCase.save()
         # print(response.url)

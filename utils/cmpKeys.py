@@ -44,7 +44,7 @@ class CmpKeys():
     def getTable(jsn,result):
         def getTableHead(table, result, pre=""):
             # print table
-            if isinstance(table, Unicode):
+            if isinstance(table, str):
                 tmp = pre + '.' + str(table).encode("utf-8")
                 result.add(tmp)
             if isinstance(table, dict):
@@ -139,12 +139,13 @@ class CmpKeys():
 
 
 if __name__ == "__main__":
-    r1 = requests.get("http://gw.yundzh.com/token/access?appid=ab1c4cf2466e11e78e710242ac110008&secret_key=dIqKXbLNPV8A")
-    jsn1 = r1.json()
-    # r1= requests.get("http://10.15.144.72/markettrend/gegu/min?token=00000001%3A1607826853%3Ad3ebda847e7e5a69d22f31f433272135aeda60fc&obj=SH000001")
+    # r1 = requests.get("http://gw.yundzh.com/token/access?appid=ab1c4cf2466e11e78e710242ac110008&secret_key=dIqKXbLNPV8A")
+    # jsn1 = r1.json()
+    r1= requests.get("http://10.15.144.72/markettrend/gegu/min?token=00000001%3A1607826853%3Ad3ebda847e7e5a69d22f31f433272135aeda60fc&obj=SH000001")
     r2 = requests.get("http://gw.yundzh.com/token/access?appid=ab1c4cf2466e11e78e710242ac110008&secret_key=dIqKXbLNPV8A")
     # jsn1 = r1.json()
     jsn2 = r2.json()
+    jsn1 = json.loads("{\"a\":\"b\"}")
     ck = CmpKeys(jsn1,jsn2)
     print(r1.json())
     print(r2.json())
