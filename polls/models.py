@@ -56,19 +56,19 @@ class TestSuit(models.Model):
 
 class TestCase(models.Model):
     test_suit = models.ForeignKey(TestSuit,on_delete=models.CASCADE,default='')
-    name = models.CharField(max_length=64)
-    is_enable = models.BooleanField(default=True)
-    url_path = models.CharField(max_length=64)
+    name = models.CharField(max_length=64,verbose_name="名称")
+    is_enable = models.BooleanField(default=True,verbose_name="状态")
+    url_path = models.CharField(max_length=64,verbose_name="Path")
     # url_param = models.TextField()
-    url_param = jsonfield.JSONField()
+    url_param = jsonfield.JSONField(verbose_name="Param")
     # real_Result = models.TextField()
-    real_Result = jsonfield.JSONField()
+    real_Result = jsonfield.JSONField(verbose_name="实际结果")
     # expected_result = models.TextField()
-    expected_result = jsonfield.JSONField()
-    pass_or_fail = models.BooleanField(default=None)
-    description = models.CharField(max_length=256)
-    on_going = models.BooleanField(default=True)
-    url = models.URLField(default="http://127.0.0.1:8001/")
+    expected_result = jsonfield.JSONField(verbose_name="期望结果")
+    pass_or_fail = models.BooleanField(default=None,verbose_name="执行结果")
+    description = models.CharField(max_length=256,verbose_name="描述",default=None)
+    on_going = models.BooleanField(default=True,verbose_name="正在执行")
+    url = models.URLField(default="http://127.0.0.1:8001/",verbose_name="完整URL")
 
     def __str__(self):
         return self.name

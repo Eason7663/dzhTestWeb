@@ -22,7 +22,10 @@
 
     <div class="container">
       <form class="form-signin" method="post" action="/login_action/">{% csrf_token %}
-        <h2 class="form-signin-heading">Interface Testing System</h2>
+        <h2 class="form-signin-heading" style="">DZH TestWeb</h2>
+          <style>
+              h2 { text-align: center;font-style: normal;font-size: 40px; color: #2e3c58}
+          </style>
         <label for="inputUsername" class="sr-only">Username</label>
           <input name="username" type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
