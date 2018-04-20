@@ -13,19 +13,29 @@
 """
 from django import forms
 from django.http import HttpResponse, HttpResponseRedirect,JsonResponse
-from polls.models import TestCase
+from polls.models import TestProject,TestSuit,TestCase
 
 class TestCaseForm(forms.ModelForm):
     class Meta:
         model = TestCase
         fields = '__all__'
+    #
+    #
+    # def testCaseForm(self,request):
+    #     if request.method == 'POST':
+    #         form = TestCaseForm(request.POST)
+    #         if form.is_valid():
+    #             testSuit = form.cleaned_data['test_suit']
+    #             name = form.cleaned_data['name']
+    #             form.save()
+    #             return HttpResponse('testSuit:' + testSuit + " ;name=" + name)
 
+class TestProjectForm(forms.ModelForm):
+    class Meta:
+        model = TestProject
+        fields = '__all__'
 
-    def testCaseForm(self,request):
-        if request.method == 'POST':
-            form = TestCaseForm(request.POST)
-            if form.is_valid():
-                testSuit = form.cleaned_data['test_suit']
-                name = form.cleaned_data['name']
-                form.save()
-                return HttpResponse('testSuit:' + testSuit + " ;name=" + name)
+class TestSuitForm(forms.ModelForm):
+    class Meta:
+        model = TestSuit
+        fields = '__all__'

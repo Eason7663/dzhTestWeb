@@ -60,7 +60,7 @@ class TestCase(models.Model):
     is_enable = models.BooleanField(default=True,verbose_name="状态")
     url_path = models.CharField(max_length=64,verbose_name="Path")
     # url_param = models.TextField()
-    url_param = jsonfield.JSONField(verbose_name="Param")
+    url_param = jsonfield.JSONField(verbose_name="Param",help_text="严格json格式")
     # real_Result = models.TextField()
     real_Result = jsonfield.JSONField(verbose_name="实际结果")
     # expected_result = models.TextField()

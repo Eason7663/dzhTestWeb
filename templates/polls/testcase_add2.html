@@ -7,9 +7,8 @@
             {% csrf_token %}
             {#            <fieldset>#}
             {% for foo in form %}
-
                 <div class="row">
-                    <label class="col-md-1 control-label" style="left: auto"> {{ foo.label }}:</label>
+                    <label class="col-md-1 control-label" style="left: auto; font-feature-settings: inherit"> {{ foo.label }}:</label>
                     <div class="col-md-2 col-md-10">
                         {{ foo }}
                     </div>
