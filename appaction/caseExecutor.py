@@ -7,11 +7,6 @@
 """
 # import os
 # os.environ.update({"DJANGO_SETTINGS_MODULE": "TestFrameWork.settings"
-from django.test.testcases import *
-from polls.models import TestCase
-from conf.constConf import yunconsole_config
-from utils.cmpKeys import CmpKeys
-import json
 import requests
 from utils.verificator import VerifyJson
 
@@ -25,7 +20,7 @@ class caseExecutor():
         url = self.config['protocol'] + self.config['host'] + path
         keys = {'appid', 'secret_key'}
         param = {key: value for key, value in self.config.items() if key in keys}
-        response = requests.get(url, param)
+        response = requests.get(url, params=param)
         print(response.url)
         yunToken = response.json()['Data']['RepDataToken'][0]['token']
         # pattern = re.compile('token')
@@ -47,7 +42,9 @@ class caseExecutor():
         return tmp
 
     def executor(self):
-        response = requests.get(self.getURL(),self.getParam())
+        # 指定params参数
+        response = requests.get(self.getURL(),params=self.getParam())
+        # response = requests.get(self.getURL())
         #
         expected = self.testCase.expected_result
         # print(type(expected))
