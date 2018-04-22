@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls import url, include
+from rest_framework.authtoken.views import  obtain_auth_token
+from polls.urls import router
 from polls import views
 from TestFrameWork import settings
 from django.conf.urls.static import static
@@ -38,5 +40,8 @@ urlpatterns = [
     url(r'^testcase/post/add', views.add_post_case_action),
     url(r'^execute_case/(?P<case_id>[0-9]+)/$', views.execute_case_action),
     url(r'^execute_case/detail/(?P<case_id>[0-9]+)/$', views.execute_case_detail_action),
+    ############################API
+    url(r'^api/',include(router.urls))
+
 ]
 # ] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

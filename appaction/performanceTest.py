@@ -55,7 +55,7 @@ def lanchServer():
     #连接服务器
     ssh.connect(hostname='10.15.107.189', port=22, username='root', password='znzyjwqqlsjrghwy189')
     #执行命令
-    command = "{path}jmeter -n -t {path}concept.jmx -l {path}concept.jtl -e -o {path}rr >test.log 2>&1".format(path="/opt/apache-jmeter-3.2/bin/")
+    command = "{path}jmeter -n -t {path}concept.jmx -l {path}concept.jtl -e -o {path}rr >{path}test.log 2> &1".format(path="/opt/apache-jmeter-3.2/bin/")
     print(command)
     stdin, stdout, stderr = ssh.exec_command(command)
     print("over1")

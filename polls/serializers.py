@@ -7,14 +7,14 @@
 """
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from polls.models import TestProject
+from polls.models import TestProject,TestCase
 import time
 
 class TestProjectSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
+    # owner = serializers.ReadOnlyField(source='owner.username')
     class Meta:
         model = TestProject
-        fields = ('name','suit_number','is_enable','owner','description')
+        fields = '__all__'
 
 # class TestProjectSerializer(serializers.Serializer):
 #     # 每一个表都可以建一个serializer，类似Django的Form  专门用于json
@@ -60,3 +60,15 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'testProjects')
+
+class TestCaseSerializer(serializers.ModelSerializer):
+    # statusDisplay = serializers.SerializerMethodField()
+    # links = serializers.SerializerMethodField()
+    class Meta:
+        model = TestCase
+        fields = "__all__"
+
+class UserRegisterSerializer(serializers.ModelSerializer):
+   class Meta:
+       model = User
+       fields = ('id', 'username', 'name')
