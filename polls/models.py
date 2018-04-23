@@ -60,15 +60,15 @@ class TestCase(models.Model):
     is_enable = models.BooleanField(default=True,verbose_name="状态")
     url_path = models.CharField(max_length=64,verbose_name="Path")
     # url_param = models.TextField()
-    url_param = jsonfield.JSONField(verbose_name="Param",help_text="严格json格式")
+    url_param = jsonfield.JSONField(verbose_name="Param",null=True)
     # real_Result = models.TextField()
-    real_Result = jsonfield.JSONField(verbose_name="实际结果")
+    real_Result = jsonfield.JSONField(verbose_name="实际结果",null=True)
     # expected_result = models.TextField()
-    expected_result = jsonfield.JSONField(verbose_name="期望结果")
+    expected_result = jsonfield.JSONField(verbose_name="期望结果",null=True)
     pass_or_fail = models.BooleanField(default=None,verbose_name="执行结果")
-    description = models.CharField(max_length=256,verbose_name="描述",default=None)
+    description = models.CharField(max_length=256,verbose_name="描述",null=True)
     on_going = models.BooleanField(default=True,verbose_name="正在执行")
-    url = models.URLField(default="http://127.0.0.1:8001/",verbose_name="完整URL")
+    url = models.URLField(default="http://127.0.0.1:8001/",verbose_name="完整URL",null=True)
 
     def __str__(self):
         return self.name

@@ -310,7 +310,7 @@ class TestCaseViewSet(viewsets.ReadOnlyModelViewSet):
         print(request.user)
         return Response("hello")
     def list(self, request, *args, **kwargs):
-        # print(request.session.get("username"))
+        print(request.session.get("username"))
         queryset = TestCase.objects.filter(test_suit__owner=request.session.get("username"))
         # queryset = TestCase.objects.all()
         serializer = TestCaseSerializer(queryset, many=True)
