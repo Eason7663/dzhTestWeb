@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect,JsonResponse
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
@@ -8,6 +8,8 @@ from rest_framework import status
 from rest_framework.parsers import JSONParser
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.permissions import *
+from rest_framework.authentication import SessionAuthentication,BasicAuthentication
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import logging
 
@@ -18,6 +20,8 @@ from django.views.decorators.csrf import csrf_protect
 from polls.models import TestProject, TestSuit,TestCase
 from polls.serializers import TestProjectSerializer
 from polls.forms import TestCaseForm
+from polls.permissions import IsOwnerOrReadOnly
+
 
 import time
 @login_required
@@ -246,7 +250,7 @@ from polls.permissions import IsOwnerOrReadOnly
 class TestProjectList(generics.ListCreateAPIView):
     queryset = TestProject.objects.all()
     serializer_class = TestProjectSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly,)
+    # permission_classes = (permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly,)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -268,3 +272,47 @@ class UserList(generics.ListAPIView):
 class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+#创建TestCase视图集
+from django.contrib.auth import  get_user_model
+from rest_framework import authentication,permissions,viewsets
+from .models import TestCase
+from .serializers import TestCaseSerializer
+
+class DefaultsMixin(object):
+    """Default settings for view authentication, permissions, filtering and pagination."""
+    authentication_classes = (
+        authentication.BaseAuthentication,
+        authentication.TokenAuthentication,
+    )
+    permission_classes = (
+        permissions.IsAuthenticated,
+    )
+    paginate_by = 25
+    paginate_by_param = 'page_size'
+    max_paginate_by = 100
+
+class TestCaseViewSet(viewsets.ReadOnlyModelViewSet):
+    authentication_classes = (SessionAuthentication, BasicAuthentication)
+    permission_classes = (IsAuthenticated,IsAuthenticatedOrReadOnly)
+    def get_object(self):
+        print("hello")
+        obj = get_object_or_404(self.get_queryset(), pk=self.kwargs["pk"])
+        self.check_object_permissions(self.request, obj)
+        return obj
+    """API endpoint for listing test cases."""
+    queryset = TestCase.objects.all()
+    serializer_class = TestCaseSerializer
+    # def perform_create(self,serializer):
+    #     print(self.request.user)
+    #     serializer.save(owner=User.objects.get(id=self.request.session.get('username')))
+    def get(self, request, *args, **kwargs):
+        print(request.user)
+        return Response("hello")
+    def list(self, request, *args, **kwargs):
+        # print(request.session.get("username"))
+        queryset = TestCase.objects.filter(test_suit__owner=request.session.get("username"))
+        # queryset = TestCase.objects.all()
+        serializer = TestCaseSerializer(queryset, many=True)
+        return Response(serializer.data)
+
