@@ -47,7 +47,7 @@ def modifyScript(path,nums):
     with open("new.jmx",'w') as fw:
         fw.write(content)
 
-def lanchServer():
+def lanchServer(path):
     #创建SSH对象
     ssh = paramiko.SSHClient()
     #允许连接不在know_hosts文件中的主机
@@ -55,16 +55,33 @@ def lanchServer():
     #连接服务器
     ssh.connect(hostname='10.15.107.189', port=22, username='root', password='znzyjwqqlsjrghwy189')
     #执行命令
-    command = "{path}jmeter -n -t {path}concept.jmx -l {path}concept.jtl -e -o {path}rr >test.log 2>&1".format(path="/opt/apache-jmeter-3.2/bin/")
+    command = "{path}jmeter -n -t {path}concept.jmx -l {path}concept.jtl -e -o {path}rr".format(path=path)
     print(command)
     stdin, stdout, stderr = ssh.exec_command(command)
-    print("over1")
-    result = stdout.read()
-    print(result.decode())
+
+    while True:
+        try:
+            line = stdout.readline()
+            if line == '':
+                break
+            print("line"+line)
+        except IOError:
+            break
+
+    err = stderr.read()
+    print(err.decode())
+
     ssh.close()
 
+
+
+
 if __name__ == "__main__":
-
-
+    path = "/opt/apache-jmeter-3.2/bin/"
+    jtlPath= path + "concept.jtl"
     # modifyScript(filePath,'300')
-    lanchServer()
+    # lanchServer(path)
+    remotePath = path + "rr"
+    localPath = ""
+    downloadDir(remotePath, localPath)
+    # removeFile(jtlPath)
