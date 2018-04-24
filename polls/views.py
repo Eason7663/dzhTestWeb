@@ -36,7 +36,7 @@ def add_post_case_action(request):
     # if request
     tcf = TestCaseForm(request.POST)
     if tcf.is_valid():
-        print(tcf)
+        # print(tcf)
         tcf.save()
         return HttpResponse("hello")
     return Response(tcf)

@@ -38,8 +38,11 @@ class caseExecutor():
         param= self.testCase.url_param
         print(param)
         # print(self.getYunToken())
-        tmp= {**param,**self.getYunToken()}
-        return tmp
+        if isinstance(param,str):
+            return self.getYunToken()
+        else:
+            tmp= {**param,**self.getYunToken()}
+            return tmp
 
     def executor(self):
         # 指定params参数

@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls import url, include
-from rest_framework.authtoken.views import  obtain_auth_token
+# from rest_framework.authtoken.views import  obtain_auth_token
 from polls.urls import router
 from polls import views
 from TestFrameWork import settings

@@ -15,7 +15,7 @@
 import paramiko
 
 class JmeterServer:
-    def __init__(self,hostip,username,password,port=22):
+    def __init__(self,hostip="",username="",password="",port=22):
         self.hostip = hostip
         self.port = port
         self.username = username

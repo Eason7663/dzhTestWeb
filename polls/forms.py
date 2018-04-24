@@ -18,8 +18,16 @@ from polls.models import TestProject,TestSuit,TestCase
 class TestCaseForm(forms.ModelForm):
     class Meta:
         model = TestCase
-        fields = '__all__'
-    #
+        # fields = '__all__'
+        # fields = '__all__'xclude('url')
+        # 创建表单的时候，url，real_result不用填
+        exclude = ['url','real_Result']
+
+
+    def __init__(self, *args, **kwargs):
+        super(TestCaseForm, self).__init__(*args, **kwargs)
+        self.fields['url_param'].required = False
+
     #
     # def testCaseForm(self,request):
     #     if request.method == 'POST':
@@ -29,6 +37,9 @@ class TestCaseForm(forms.ModelForm):
     #             name = form.cleaned_data['name']
     #             form.save()
     #             return HttpResponse('testSuit:' + testSuit + " ;name=" + name)
+    def save(self, commit=True):
+        super(TestCaseForm,self).save()
+
 
 class TestProjectForm(forms.ModelForm):
     class Meta:
