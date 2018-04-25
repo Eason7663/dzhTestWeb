@@ -2,79 +2,119 @@
 # -*- coding: utf-8 -*-
 """
 -------------------------------------------------
-   File Name：     myThread
+   File Name：     jmeterThread
    Description :
    Author :       Eason
-   date：          2018/4/24
+   date：          2018/4/25
 -------------------------------------------------
    Change Activity:
-                   2018/4/24:
+                   2018/4/25:
 -------------------------------------------------
 """
-# from appaction.jmeterServer import JmeterServer
 import threading
+import time,re
 from queue import Queue
-import time,random,math
+import paramiko
+from appaction.fetchReportThread import FetchReportThread
 
-taskQueue = Queue()
-# class JmeterThread(threading.Thread):
-#
-#     def __init__(self,i):
-#         threading.Thread.__init__(self)
-#         # self.jmeterSvr = jmeterSvr
-#         self.i = i
-#
-#     def run(self):
-#         # self.jmeterSvr.run_cmd()
-#         ii = random.randint(0,self.i)
-#         time.sleep(ii)
-#
-#         s = "sleep " + ii + "s"
-#         self.taskQueue.put(s)
+taskList = ["concept_100"]#,"concept_200","concept_300","concept_400"]
+msgQueue = Queue()
 
-class odd():
-    def __init__(self,num):
-        self.num = num
-
-    def __str__(self):
-        return "I({}) am a odd".format(str(self.num))
+class JmeterServer():
+    def __init__(self,host,username,password,path,port=22):
+        self.host = host
+        self.port = port
+        self.username = username
+        self.password = password
+        self.path = path
 
 
-class even():
-    def __init__(self, num):
-        self.num = num
+class JsvrThread(threading.Thread):
+    def __init__(self,jmeterServer,taskList,msgQueue,threadName):
+        threading.Thread.__init__(self)
+        self.taskList = taskList
+        self.msgQueue = msgQueue
+        self.name = threadName
+        self.host = jmeterServer.host
+        self.port = jmeterServer.port
+        self.username = jmeterServer.username
+        self.password = jmeterServer.password
+        self.path = jmeterServer.path
+        self.obj = paramiko.SSHClient()
+        self.obj.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        self.obj.connect(self.host,self.port,self.username,self.password)
+        self.objsftp = self.obj.open_sftp()
 
-    def __str__(self):
-        return "I({}) am a even".format(str(self.num))
+    def run(self):
 
-def worker(name):
+        while len(self.taskList):
+            s = self.taskList.pop(0)
+            filePath = self.path + s
+            cmd = "{path}jmeter -n -t {filePath}.jmx -l {filePath}.jtl -e -o {filePath}".format(path=self.path,filePath=filePath)
+            # time.sleep(s)
+            # self.name = self.name
+            # msg = self.name + " has sleeped " + str(s) + "s"
+            # print("In " + self.name + ":" + msg)
+            # msgQueue.put(msg)
+            self.run_cmd(cmd)
+            msgQueue.put("Task has been done: " + s)
+        msgQueue.put("All Task Done")
+        self.obj.close()
 
-    ii = random.randint(0, 20)
-    # time.sleep(ii)
-
-        # s = name + " sleep " + str(ii) + "s"
-    print("In thread: " + threading.current_thread().getName())
-    if (ii%2)==0:
-        print(ii)
-        # even(ii)
-        taskQueue.put(even(ii))
-    else:
-        # odd(ii)
-        taskQueue.put(odd(ii))
-
-
-if __name__=="__main__":
-    for i in range(10):
-        t = threading.Thread(target=worker,args=("Thread{}".format(i),),name="Thread"+str(i))
-        t.start()
-    j = 5
-    while True:
-        time.sleep(3)
-        if j <=0 :
-            break
-        j -= 1
-        tt = taskQueue.get()
-        if isinstance(tt,odd):
-            print("***odd:"+ tt.__str__())
+    def getErr(self,line):
+        searchObj = re.search(r'Err:(.*)\((.*)\)', line, re.M | re.I)
+        if searchObj:
+            return searchObj.group(2)[:-1]
         else:
-            print("***even:"+ tt.__str__())
+            return "Nothing found!!"
+
+    def run_cmd(self, cmd):
+        stdin, stdout, stderr = self.obj.exec_command(cmd)
+        while True:
+            try:
+                line = stdout.readline()
+                if line == '':
+                    break
+                if "Err:" in line:
+                    #错误率达到80%立即停止
+                    if float(self.getErr(line)) > 80:
+                        cmd = "/opt/apache-jmeter-3.2/bin/shutdown.sh"
+                        self.obj.exec_command(cmd)
+                        cmd = "/opt/apache-jmeter-3.2/bin/stoptest.sh"
+                        self.obj.exec_command(cmd)
+                    #错误率在大于2%，本次执行依旧，但不再执行下个任务
+
+                msg = threading.currentThread().getName() + " is running: " + line.strip()
+
+                # msgQueue.put("****")
+                msgQueue.put(msg)
+
+            except IOError:
+                break
+
+        err = stderr.read()
+        print(err.decode())
+        # self.obj.close()
+
+
+
+if __name__ == "__main__":
+    # line = "summary + 142895 in 00:00:17 = 8463.3/s Avg:     8 Min:     0 Max:   675 Err:     0 (0.00%) Active: 100 Started:"
+    host = "10.15.107.189"
+    username = "root"
+    password = "znzyjwqqlsjrghwy189"
+    path = "/opt/apache-jmeter-3.2/bin/"
+    jmeterServer = JmeterServer(host,username,password,path)
+    t = JsvrThread(jmeterServer,taskList,msgQueue,"JsvrThread")
+    t.start()
+
+    while True:
+        msg = msgQueue.get()
+        if "Task has been done:" in msg:
+            reportName =msg.split()[-1]
+            fetchReport = FetchReportThread(jmeterServer,reportName,"FetchReport")
+            fetchReport.start()
+            print(msg.split()[-1])
+        print(msg)
+        if msg == "All Task Done":
+            break
