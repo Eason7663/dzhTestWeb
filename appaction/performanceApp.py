@@ -77,7 +77,15 @@ class PerformanceApp():
         for tmp in self.remoteFileList:
             tmpList.append(tmp.split("/")[-1].replace(".jmx",""))
         return tmpList
-
+"""
+patten = '<stringProp name="LoopController.loops">(.*?)</stringProp>'
+replace_str = '<stringProp name="LoopController.loops">$loops</stringProp>'
+jmx_str = re.sub(patten, replace_str, jmx_str)
+patten = '<stringProp name="ThreadGroup.num_threads">(.*?)</stringProp>'
+replace_str = '<stringProp name="ThreadGroup.num_threads">$num_threads</stringProp>'
+jmx_str = re.sub(patten, replace_str, jmx_str)
+replaced_jmxfile = origin_jmxfile.replace('.jmx', '-P.jmx')
+"""
 
 
 if __name__ == "__main__":
@@ -98,3 +106,4 @@ if __name__ == "__main__":
         pf.getReport(remotePath,reportName)
 
     pf.close()
+
