@@ -26,10 +26,9 @@ class JmeterServer():
 
 class FetchReportThread(threading.Thread):
     def __init__(self,jmeterServer,reportName,threadName):
-        threading.Thread.__init__(self)
+        threading.Thread.__init__(self,name=threadName)
         self.jmeterServer =jmeterServer
         self.reportName =reportName
-        self.name = threadName
         self.host = jmeterServer.host
         self.port = jmeterServer.port
         self.username = jmeterServer.username

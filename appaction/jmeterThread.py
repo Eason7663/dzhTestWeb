@@ -15,26 +15,20 @@ import threading
 import time,re
 from queue import Queue
 import paramiko
+from appaction.singletonClass import JmeterServer,LocalServer
 from appaction.fetchReportThread import FetchReportThread
 
-taskList = ["concept_100"]#,"concept_200","concept_300","concept_400"]
-msgQueue = Queue()
-
-class JmeterServer():
-    def __init__(self,host,username,password,path,port=22):
-        self.host = host
-        self.port = port
-        self.username = username
-        self.password = password
-        self.path = path
+# taskList = ["concept_100"]#,"concept_200","concept_300","concept_400"]
+# msgQueue = Queue()
 
 
-class JsvrThread(threading.Thread):
-    def __init__(self,jmeterServer,taskList,msgQueue,threadName):
-        threading.Thread.__init__(self)
-        self.taskList = taskList
-        self.msgQueue = msgQueue
-        self.name = threadName
+
+
+class jmxRunThread(threading.Thread):
+    taskList = ["concept_100"]  # ,"concept_200","concept_300","concept_400"]
+    msgQueue = Queue()
+    def __init__(self,jmeterServer,threadName):
+        threading.Thread.__init__(self,name=threadName)
         self.host = jmeterServer.host
         self.port = jmeterServer.port
         self.username = jmeterServer.username
@@ -47,18 +41,20 @@ class JsvrThread(threading.Thread):
 
     def run(self):
 
-        while len(self.taskList):
+        while True:
+            if False:
+                break
             s = self.taskList.pop(0)
             filePath = self.path + s
-            cmd = "{path}jmeter -n -t {filePath}.jmx -l {filePath}.jtl -e -o {filePath}".format(path=self.path,filePath=filePath)
+            cmd = "{path}jmeter -n -t {filePath}.jmx -l {filePath}.jtl".format(path=self.path,filePath=filePath)
             # time.sleep(s)
             # self.name = self.name
             # msg = self.name + " has sleeped " + str(s) + "s"
             # print("In " + self.name + ":" + msg)
             # msgQueue.put(msg)
             self.run_cmd(cmd)
-            msgQueue.put("Task has been done: " + s)
-        msgQueue.put("All Task Done")
+            self.msgQueue.put("Task has been done: " + s)
+        self.msgQueue.put("All Task Done")
         self.obj.close()
 
     def getErr(self,line):
@@ -87,7 +83,7 @@ class JsvrThread(threading.Thread):
                 msg = threading.currentThread().getName() + " is running: " + line.strip()
 
                 # msgQueue.put("****")
-                msgQueue.put(msg)
+                self.msgQueue.put(msg)
 
             except IOError:
                 break
@@ -95,6 +91,16 @@ class JsvrThread(threading.Thread):
         err = stderr.read()
         print(err.decode())
         # self.obj.close()
+    def prepareJMX(self):
+
+        pass
+
+
+    def uploadJMX(self):
+        pass
+
+
+
 
 
 
@@ -105,11 +111,11 @@ if __name__ == "__main__":
     password = "znzyjwqqlsjrghwy189"
     path = "/opt/apache-jmeter-3.2/bin/"
     jmeterServer = JmeterServer(host,username,password,path)
-    t = JsvrThread(jmeterServer,taskList,msgQueue,"JsvrThread")
+    t = jmxRunThread(jmeterServer,"JsvrThread")
     t.start()
 
     while True:
-        msg = msgQueue.get()
+        msg = t.msgQueue.get()
         if "Task has been done:" in msg:
             reportName =msg.split()[-1]
             fetchReport = FetchReportThread(jmeterServer,reportName,"FetchReport")

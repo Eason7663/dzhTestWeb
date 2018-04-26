@@ -14,7 +14,7 @@ from utils.cmpKeys import CmpKeys
 import json
 import requests
 from utils.verificator import VerifyJson
-
+"""
 class caseExecutor():
     def __init__(self,config,testCase):
         self.testCase = testCase
@@ -68,4 +68,5 @@ class caseExecutor():
         self.testCase.save()
         # print(response.url)
         # print(self.getParam())
+"""
 

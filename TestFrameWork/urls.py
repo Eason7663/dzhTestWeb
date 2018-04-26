@@ -19,6 +19,7 @@ from django.conf.urls import url, include
 # from rest_framework.authtoken.views import  obtain_auth_token
 from polls.urls import router
 from polls import views
+from pfmApp import views as pfmAppViews
 from TestFrameWork import settings
 from django.conf.urls.static import static
 
@@ -41,7 +42,11 @@ urlpatterns = [
     url(r'^execute_case/(?P<case_id>[0-9]+)/$', views.execute_case_action),
     url(r'^execute_case/detail/(?P<case_id>[0-9]+)/$', views.execute_case_detail_action),
     ############################API
-    url(r'^api/',include(router.urls))
+    url(r'^api/',include(router.urls)),
+    ############################pfmApp
+    url(r'^performance/case/add$',pfmAppViews.add_jmeter_server_action),
+    url(r'^performance/script/upload$',pfmAppViews.script_upload_action),
+
 
 ]
 # ] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

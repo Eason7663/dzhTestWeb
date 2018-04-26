@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'polls',
+    'pfmApp',
     # 'markdown_deux',
     'rest_framework',
 ]

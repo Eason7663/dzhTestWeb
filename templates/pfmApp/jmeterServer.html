@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="container" role="main">
+        <h1>Create Performance Test</h1>
+        <h4>Step1: 导入脚本文件</h4>
+        <div id="add">
+            <form class="form-inline" enctype="multipart/form-data"
+                  accept-charset="utf-8">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="sr-only" for="name">名称</label>
+                    <input name="casefilepath" type="text" class="form-control" id="name" placeholder="请输入名称">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="inputfile">文件输入</label>
+                                    {% csrf_token %}
+{#                    <input name="file" type="file" id="inputfile">#}
+{#                    <input type="file" name="image" class="projectfile" value="${deal.image}"/>#}
+                    <input id="input-b2" name="file" type="file" class="file" data-show-preview="false">
+                    <button type="submit" class="btn btn-primary" onclick="FileUpload()">导入脚本文件</button>
+                    <script src="/static/js/jquery-3.3.1.js"></script>
+                    <script>
+                        function FileUpload() {
+                            var form_data = new FormData();
+                            var file_info = $('#file_upload')[0].files[0];
+                            form_data.append('file', file_info);
+                            //if(file_info==undefined)暂且不许要判断是否有附件
+                            //alert('你没有选择任何文件');
+                            //return false
+                            $.ajax({
+                                url: '/performance/script/upload',
+                                type: 'POST',
+                                data: form_data,
+                                processData: false,  // tell jquery not to process the data
+                                contentType: false, // tell jquery not to set contentType
+                                success: function (callback) {
+
+                                    console.log('ok')
+                                }
+                            });
+
+                        }</script>
+                </div>
+            </form>
+        </div>
+        <div>
+            <input type="file" name="file" id="file_upload">
+            <input type="button" value="上传" onclick="FileUpload()">
+
+        </div>
+        <h2></h2>
+        <h4>Step2：填写服务器配置</h4>
+        <div>
+            <form class="form" method="post" action="/testcase/post/add">
+                {% csrf_token %}
+                {#            <fieldset>#}
+                {% for foo in form %}
+                    <div class="container-fluid">
+                        <div class="row">
+                            <label class="col-md-1 control-label"
+                                   style="left: auto; font-feature-settings: inherit"> {{ foo.label }}:</label>
+                            <div class="col-md-3 col-md-10">
+                                {{ foo }}
+                                {{ foo.help_text }}
+                            </div>
+                        </div>
+                    </div>
+                    <h5></h5>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-primary">创建</button>
+                {#            </fieldset>#}
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

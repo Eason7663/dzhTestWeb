@@ -13,7 +13,7 @@
 """
 import os,re
 from functools import reduce
-from appaction.jmeterServer import JmeterServer
+from appaction.jServer import JmeterServer
 
 class PerformanceApp():
     def __init__(self,hostip,username,password,path):
@@ -52,6 +52,7 @@ class PerformanceApp():
         src = self.readFile(loacalFile)
         # print(src)
         p1 = re.compile(r'(?<=<stringProp name="ThreadGroup.num_threads">)(.*?)(?=</stringProp>)')
+        #找到第一个
         list = p1.findall(src)
         if len(list) != 0:
             oldnums = int(list[0])
