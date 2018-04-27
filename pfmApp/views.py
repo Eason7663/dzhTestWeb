@@ -10,7 +10,7 @@ import os
 @login_required
 def add_jmeter_server_action(request):
     jsmf = JmeterSvrModelForm(request.POST)
-    return render(request,"pfmApp/jmeterServer.html",{'form':jsmf})
+    return render(request, "pfmApp/jmeterServer.html", {'form':jsmf})
 
 @login_required
 def script_upload_action(request):
@@ -18,7 +18,7 @@ def script_upload_action(request):
 
         handle_upload_file(request.FILES['file'], str(request.FILES['file']))
         # jsmf = JmeterSvrModelForm(request.POST)
-        # return render(request, "pfmApp/jmeterServer.html", {'form': jsmf})
+        # return render(request, "pfmApp/jmeterServer3.html", {'form': jsmf})
 
         # return HttpResponse('Successful')  # 此处简单返回一个成功的消息，在实际应用中可以返回到指定的页面中
 

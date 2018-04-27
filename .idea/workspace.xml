@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da09c471-4090-4318-a8f7-7b6f103778a4" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/js/bootstrap-table.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/js/bootstrap-table.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/templates/pfmApp/jmeterServerbBak.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/css/bootstrap-table.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/js/bootstrap-table-locale-all.min.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/js/bootstrap-table.min.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/templates/pfmApp/jmeterServer3.html" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/pfmApp/views.py" afterPath="$PROJECT_DIR$/pfmApp/views.py" />
+      <change beforePath="$PROJECT_DIR$/polls/urls.py" afterPath="$PROJECT_DIR$/polls/urls.py" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" afterPath="$PROJECT_DIR$/templates/base.html" />
       <change beforePath="$PROJECT_DIR$/templates/pfmApp/jmeterServer.html" afterPath="$PROJECT_DIR$/templates/pfmApp/jmeterServer.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,65 +59,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="jmeterServer3.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/pfmApp/jmeterServer3.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-917">
+              <caret line="31" column="22" lean-forward="true" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/polls/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="287">
+              <caret line="26" column="61" lean-forward="true" selection-start-line="26" selection-start-column="61" selection-end-line="26" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="jmeterServer.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/pfmApp/jmeterServer.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="37" column="35" lean-forward="false" selection-start-line="37" selection-start-column="35" selection-end-line="37" selection-end-column="35" />
-              <folding>
-                <element signature="e#74#101#0#HTML" expanded="true" />
-                <element signature="e#339#362#0#HTML" expanded="true" />
-                <element signature="e#960#984#0#HTML" expanded="true" />
-                <element signature="e#1036#1060#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bootstrap-table.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/static/js/bootstrap-table.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="2309" column="85" lean-forward="true" selection-start-line="2309" selection-start-column="85" selection-end-line="2309" selection-end-column="85" />
-              <folding>
-                <marker date="1524145299000" expanded="true" signature="15344:15810" ph="..." />
-                <marker date="1524145299000" expanded="true" signature="15461:15767" ph="..." />
-                <marker date="1524145299000" expanded="true" signature="15562:15681" ph="..." />
-                <marker date="1524145299000" expanded="true" signature="15604:15666" ph="..." />
-                <marker date="1524145299000" expanded="true" signature="20761:20820" ph="..." />
-                <marker date="1524145299000" expanded="true" signature="52837:52943" ph="..." />
-                <marker date="1524145299000" expanded="true" signature="56081:56436" ph="..." />
-                <marker date="1524145299000" expanded="true" signature="70951:70957" ph=" " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bootstrap-table.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/css/bootstrap-table.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bootstrap-table.min.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/css/bootstrap-table.min.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bootstrap-table.min.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/js/bootstrap-table.min.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="1065">
+              <caret line="158" column="9" lean-forward="true" selection-start-line="158" selection-start-column="9" selection-end-line="158" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -122,7 +92,7 @@
       <file leaf-file-name="jmeterServerbBak.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/pfmApp/jmeterServerbBak.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="-360">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
@@ -144,8 +114,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TestFrameWork/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="46" column="11" lean-forward="false" selection-start-line="46" selection-start-column="11" selection-end-line="46" selection-end-column="31" />
+            <state relative-caret-position="92">
+              <caret line="27" column="30" lean-forward="false" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
               <folding>
                 <element signature="e#647#679#0" expanded="true" />
               </folding>
@@ -156,11 +126,31 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pfmApp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+            <state relative-caret-position="129">
+              <caret line="10" column="4" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/polls/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="197">
+              <caret line="257" column="46" lean-forward="true" selection-start-line="257" selection-start-column="46" selection-end-line="257" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-134">
+              <caret line="29" column="54" lean-forward="false" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -184,6 +174,7 @@
       <find>200</find>
       <find>100</find>
       <find>data-toggle</find>
+      <find>detailView</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -198,7 +189,6 @@
         <option value="$PROJECT_DIR$/utils/RedisTool.py" />
         <option value="$PROJECT_DIR$/utils/jsonToTable.py" />
         <option value="$PROJECT_DIR$/../book.dzhyun/src/06-Q&amp;A/4-新增机器上面安装docker182版本.md" />
-        <option value="$PROJECT_DIR$/polls/urls.py" />
         <option value="$PROJECT_DIR$/../MatchConceptApp/matchConcept/shortterm.py" />
         <option value="$PROJECT_DIR$/utils/cmpKeys.py" />
         <option value="$PROJECT_DIR$/utils/verificator.py" />
@@ -227,11 +217,12 @@
         <option value="$PROJECT_DIR$/templates/polls/testsuit_manage.html" />
         <option value="$PROJECT_DIR$/pfmApp/forms.py" />
         <option value="$PROJECT_DIR$/pfmApp/models.py" />
-        <option value="$PROJECT_DIR$/TestFrameWork/urls.py" />
         <option value="$PROJECT_DIR$/TestFrameWork/settings.py" />
-        <option value="$PROJECT_DIR$/pfmApp/views.py" />
-        <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/appaction/jmeterThread.py" />
+        <option value="$PROJECT_DIR$/templates/base.html" />
+        <option value="$PROJECT_DIR$/pfmApp/views.py" />
+        <option value="$PROJECT_DIR$/TestFrameWork/urls.py" />
+        <option value="$PROJECT_DIR$/polls/urls.py" />
         <option value="$PROJECT_DIR$/templates/pfmApp/jmeterServer.html" />
       </list>
     </option>
@@ -295,13 +286,7 @@
             <path>
               <item name="dzhTestWeb" type="b2602c69:ProjectViewProjectNode" />
               <item name="dzhTestWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dzhTestWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dzhTestWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="report" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="dzhTestWeb" type="b2602c69:ProjectViewProjectNode" />
@@ -318,11 +303,6 @@
               <item name="dzhTestWeb" type="b2602c69:ProjectViewProjectNode" />
               <item name="dzhTestWeb" type="462c0819:PsiDirectoryNode" />
               <item name="TestFrameWork" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dzhTestWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dzhTestWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="tmp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="dzhTestWeb" type="b2602c69:ProjectViewProjectNode" />
@@ -356,9 +336,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Work\python\dzhTestWeb\templates\pfmApp" />
       <recent name="E:\Work\python\dzhTestWeb\static\js" />
       <recent name="E:\Work\python\dzhTestWeb\static\css" />
-      <recent name="E:\Work\python\dzhTestWeb\templates\pfmApp" />
       <recent name="E:\Work\python\dzhTestWeb\static" />
       <recent name="E:\Work\python\dzhTestWeb\pfmApp" />
     </key>
@@ -712,7 +692,28 @@
       <option name="project" value="LOCAL" />
       <updated>1524815431523</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="bootstrap table创建">
+      <created>1524815490758</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1524815490758</updated>
+    </task>
+    <task id="LOCAL-00028" summary="bootstrap table创建">
+      <created>1524815622485</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1524815622485</updated>
+    </task>
+    <task id="LOCAL-00029" summary="bootstrap table创建">
+      <created>1524815652420</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1524815652420</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -727,13 +728,13 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32730263" sideWeight="0.4924357" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.4924357" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5075643" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.054276317" sideWeight="0.49016643" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20559211" sideWeight="0.49016643" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20726173" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20726173" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -794,20 +795,11 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/appaction/fetchReportThread.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="24" column="24" lean-forward="false" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
-          <folding>
-            <element signature="e#355#371#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/appaction/jServer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="83" column="13" lean-forward="false" selection-start-line="83" selection-start-column="13" selection-end-line="83" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -822,6 +814,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="58" column="13" lean-forward="false" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
+          <folding>
+            <element signature="e#352#364#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -829,6 +824,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="127">
           <caret line="13" column="8" lean-forward="false" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -970,14 +966,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/polls/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pfmApp/apps.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1016,16 +1004,6 @@
           <caret line="7" column="48" lean-forward="false" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
           <folding>
             <element signature="e#0#28#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/polls/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#53#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1079,40 +1057,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pfmApp/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/appaction/jmeterThread.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="193">
           <caret line="27" column="29" lean-forward="false" selection-start-line="27" selection-start-column="29" selection-end-line="27" selection-end-column="29" />
           <folding>
             <element signature="e#350#366#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TestFrameWork/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="46" column="11" lean-forward="false" selection-start-line="46" selection-start-column="11" selection-end-line="46" selection-end-column="31" />
-          <folding>
-            <element signature="e#647#679#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1128,14 +1078,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/pfmApp/jmeterServerbBak.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -1144,20 +1086,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/pfmApp/jmeterServer.html">
+    <entry file="file://$PROJECT_DIR$/static/js/bootstrap-table-locale-all.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="37" column="35" lean-forward="false" selection-start-line="37" selection-start-column="35" selection-end-line="37" selection-end-column="35" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/bootstrap-table.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="2309" column="85" lean-forward="false" selection-start-line="2309" selection-start-column="85" selection-end-line="2309" selection-end-column="85" />
           <folding>
-            <element signature="e#74#101#0#HTML" expanded="true" />
-            <element signature="e#339#362#0#HTML" expanded="true" />
-            <element signature="e#960#984#0#HTML" expanded="true" />
-            <element signature="e#1036#1060#0#HTML" expanded="true" />
+            <marker date="1524145299000" expanded="true" signature="15344:15810" ph="..." />
+            <marker date="1524145299000" expanded="true" signature="15461:15767" ph="..." />
+            <marker date="1524145299000" expanded="true" signature="15562:15681" ph="..." />
+            <marker date="1524145299000" expanded="true" signature="15604:15666" ph="..." />
+            <marker date="1524145299000" expanded="true" signature="20761:20820" ph="..." />
+            <marker date="1524145299000" expanded="true" signature="52837:52943" ph="..." />
+            <marker date="1524145299000" expanded="true" signature="56081:56436" ph="..." />
+            <marker date="1524145299000" expanded="true" signature="70951:70957" ph=" " />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/bootstrap-table.css">
+    <entry file="file://$PROJECT_DIR$/static/js/bootstrap-table.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1173,7 +1127,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/bootstrap-table-locale-all.js">
+    <entry file="file://$PROJECT_DIR$/static/css/bootstrap-table.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1181,28 +1135,71 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/bootstrap-table.min.js">
+    <entry file="file://$PROJECT_DIR$/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="-134">
+          <caret line="29" column="54" lean-forward="false" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/pfmApp/jmeterServerbBak.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-360">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/bootstrap-table.js">
+    <entry file="file://$PROJECT_DIR$/templates/pfmApp/jmeterServer3.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="2309" column="85" lean-forward="true" selection-start-line="2309" selection-start-column="85" selection-end-line="2309" selection-end-column="85" />
+        <state relative-caret-position="-917">
+          <caret line="31" column="22" lean-forward="true" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfmApp/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="10" column="4" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
           <folding>
-            <marker date="1524145299000" expanded="true" signature="15344:15810" ph="..." />
-            <marker date="1524145299000" expanded="true" signature="15461:15767" ph="..." />
-            <marker date="1524145299000" expanded="true" signature="15562:15681" ph="..." />
-            <marker date="1524145299000" expanded="true" signature="15604:15666" ph="..." />
-            <marker date="1524145299000" expanded="true" signature="20761:20820" ph="..." />
-            <marker date="1524145299000" expanded="true" signature="52837:52943" ph="..." />
-            <marker date="1524145299000" expanded="true" signature="56081:56436" ph="..." />
-            <marker date="1524145299000" expanded="true" signature="70951:70957" ph=" " />
+            <element signature="e#0#35#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/pfmApp/jmeterServer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1065">
+          <caret line="158" column="9" lean-forward="true" selection-start-line="158" selection-start-column="9" selection-end-line="158" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TestFrameWork/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="27" column="30" lean-forward="false" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
+          <folding>
+            <element signature="e#647#679#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/polls/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="26" column="61" lean-forward="true" selection-start-line="26" selection-start-column="61" selection-end-line="26" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/polls/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="257" column="46" lean-forward="true" selection-start-line="257" selection-start-column="46" selection-end-line="257" selection-end-column="46" />
+          <folding />
         </state>
       </provider>
     </entry>

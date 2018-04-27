@@ -23,7 +23,7 @@ router.register(r'cases',views.TestCaseViewSet)
 
 
 urlpatterns = [
-    url(r'^testproject/$', views.TestProjectList.as_view()),
+    url(r'^testproject$', views.TestProjectList.as_view()),
     url(r'^testproject/(?P<pk>[0-9]+)/$', views.TestProjectDetail.as_view()),
     url(r'^users/$', views.UserList.as_view()),
     url(r'^users/(?P<pk>[0-9]+)/$', views.UserDetail.as_view()),
