@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block content %}
+
+    {#    <div class="line line-dashed line-lg pull-in"></div>#}
+    <div class="container">
+        <h1>Create Performance Test</h1>
+        <div class="col-xs-6 row-fluid">
+            {#            <form></form>#}
+            {#            <h4>Step1：导入jmx脚本</h4>#}
+            {#            <input id="jmx_file" name="jmx_file" type="file" multiple class="file"#}
+            {#                   data-show-upload="true" data-show-caption="true"#}
+            {#                   data-show-preview="false" data-allowed-file-extensions='["jmx"]'>#}
+            {#            <script>#}
+            {##}
+            {#            </script>#}
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fileInputModal">
+                Launch Modal
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="fileInputModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="file-loading">
+                                <input id="input-b9" name="input-b9[]" multiple type="file">
+                            </div>
+                            <div id="kartik-file-errors"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" title="Your custom upload logic">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script src="/static/js/jquery-3.3.1.js"></script>
+            <script type="text/javascript" src="/static/js/fileinput.min.js"></script>
+
+            <script>
+                {#$(document).on('ready', function () {#}
+                {#    $("#input-b9").fileinput({#}
+                {#        showPreview: false,#}
+                {#        showUpload: false,#}
+                {#        elErrorContainer: '#kartik-file-errors',#}
+                {#        allowedFileExtensions: ["jpg", "png", "gif"]#}
+                {#        uploadUrl: '/site/file-upload-single'#}
+                {#    });#}
+                {#});#}
+            </script>
+        </div>
+        <div class="col-xs-8 row-fluid">
+            <h4>Step2：填写服务器配置</h4>
+            <form class="form" method="post" action="/performance/case/add">
+                {% csrf_token %}
+                {#            <fieldset>#}
+                {% for foo in form %}
+                    <div class="container-fluid">
+                        <div class="row">
+                            <label class="col-md-3 control-label"
+                                   style="left: auto; font-feature-settings: inherit"> {{ foo.label }}:</label>
+                            <div class="col-md-3 col-md-10">
+                                {{ foo }}
+                                {{ foo.help_text }}
+                            </div>
+                        </div>
+                    </div>
+                    <h5></h5>
+                {% endfor %}
+                <button type="button" class="btn btn-primary">创建</button>
+                {#            </fieldset>#}
+            </form>
+        </div>
+
+    </div>
+
+{% endblock %}

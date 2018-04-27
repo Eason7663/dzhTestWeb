@@ -2,65 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da09c471-4090-4318-a8f7-7b6f103778a4" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/css/fileinput-rtl.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/css/fileinput-rtl.min.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/css/fileinput.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/css/fileinput.min.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/js/fileinput.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/js/fileinput.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/README.md" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-af-ZA.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-ar-SA.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-ca-ES.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-cs-CZ.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-da-DK.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-de-DE.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-el-GR.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-en-US.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-en-US.js.template" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-es-AR.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-es-CL.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-es-CR.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-es-ES.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-es-MX.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-es-NI.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-es-SP.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-et-EE.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-eu-EU.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-fa-IR.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-fr-BE.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-fr-FR.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-he-IL.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-hr-HR.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-hu-HU.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-id-ID.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-it-IT.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-ja-JP.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-ka-GE.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-ko-KR.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-ms-MY.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-nb-NO.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-nl-NL.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-pl-PL.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-pt-BR.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-pt-PT.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-ro-RO.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-ru-RU.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-sk-SK.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-sv-SE.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-th-TH.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-tr-TR.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-uk-UA.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-ur-PK.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-uz-Latn-UZ.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-vi-VN.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-zh-CN.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/locale/bootstrap-table-zh-TW.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/js/bootstrap-table.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/js/bootstrap-table.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/templates/pfmApp/jmeterServerbBak.html" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/appaction/jmeterThread.py" afterPath="$PROJECT_DIR$/appaction/jmeterThread.py" />
-      <change beforePath="$PROJECT_DIR$/pfmApp/views.py" afterPath="$PROJECT_DIR$/pfmApp/views.py" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" afterPath="$PROJECT_DIR$/templates/base.html" />
       <change beforePath="$PROJECT_DIR$/templates/pfmApp/jmeterServer.html" afterPath="$PROJECT_DIR$/templates/pfmApp/jmeterServer.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -110,14 +55,76 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="jmeterServer.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="jmeterServer.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/pfmApp/jmeterServer.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="48" column="31" lean-forward="false" selection-start-line="48" selection-start-column="31" selection-end-line="56" selection-end-column="21" />
+            <state relative-caret-position="234">
+              <caret line="37" column="35" lean-forward="false" selection-start-line="37" selection-start-column="35" selection-end-line="37" selection-end-column="35" />
               <folding>
-                <element signature="e#1499#1506#1#HTML" expanded="true" />
+                <element signature="e#74#101#0#HTML" expanded="true" />
+                <element signature="e#339#362#0#HTML" expanded="true" />
+                <element signature="e#960#984#0#HTML" expanded="true" />
+                <element signature="e#1036#1060#0#HTML" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bootstrap-table.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/static/js/bootstrap-table.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="2309" column="85" lean-forward="true" selection-start-line="2309" selection-start-column="85" selection-end-line="2309" selection-end-column="85" />
+              <folding>
+                <marker date="1524145299000" expanded="true" signature="15344:15810" ph="..." />
+                <marker date="1524145299000" expanded="true" signature="15461:15767" ph="..." />
+                <marker date="1524145299000" expanded="true" signature="15562:15681" ph="..." />
+                <marker date="1524145299000" expanded="true" signature="15604:15666" ph="..." />
+                <marker date="1524145299000" expanded="true" signature="20761:20820" ph="..." />
+                <marker date="1524145299000" expanded="true" signature="52837:52943" ph="..." />
+                <marker date="1524145299000" expanded="true" signature="56081:56436" ph="..." />
+                <marker date="1524145299000" expanded="true" signature="70951:70957" ph=" " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bootstrap-table.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/css/bootstrap-table.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bootstrap-table.min.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/css/bootstrap-table.min.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bootstrap-table.min.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/js/bootstrap-table.min.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jmeterServerbBak.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/pfmApp/jmeterServerbBak.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -130,46 +137,6 @@
               <folding>
                 <element signature="e#350#366#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TestFrameWork/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="exception.py" pinned="false" current-in-tab="false">
-        <entry file="file://C:/Python35/Lib/site-packages/django/core/handlers/exception.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.py" pinned="false" current-in-tab="false">
-        <entry file="file://C:/Python35/Lib/site-packages/django/core/handlers/base.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2475">
-              <caret line="184" column="0" lean-forward="false" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="decorators.py" pinned="false" current-in-tab="false">
-        <entry file="file://C:/Python35/Lib/site-packages/django/contrib/auth/decorators.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -333,7 +300,19 @@
             <path>
               <item name="dzhTestWeb" type="b2602c69:ProjectViewProjectNode" />
               <item name="dzhTestWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dzhTestWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dzhTestWeb" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dzhTestWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dzhTestWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="pfmApp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="dzhTestWeb" type="b2602c69:ProjectViewProjectNode" />
@@ -377,13 +356,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Work\python\dzhTestWeb\static" />
-      <recent name="E:\Work\python\dzhTestWeb\static\css" />
       <recent name="E:\Work\python\dzhTestWeb\static\js" />
-      <recent name="E:\Work\python\dzhTestWeb\pfmApp" />
+      <recent name="E:\Work\python\dzhTestWeb\static\css" />
       <recent name="E:\Work\python\dzhTestWeb\templates\pfmApp" />
+      <recent name="E:\Work\python\dzhTestWeb\static" />
+      <recent name="E:\Work\python\dzhTestWeb\pfmApp" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Work\python\dzhTestWeb\static\css" />
       <recent name="E:\Work\python\dzhTestWeb\tmp" />
     </key>
   </component>
@@ -718,10 +698,17 @@
       <option name="project" value="LOCAL" />
       <updated>1524792975930</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="1.performance test创建view,model,form，页面上传文件">
+      <created>1524813969350</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1524813969350</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
-  <component name="TodoView">
+  <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
     </todo-panel>
@@ -733,15 +720,16 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43421054" sideWeight="0.5098336" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32730263" sideWeight="0.4924357" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5075643" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33552632" sideWeight="0.49016643" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.054276317" sideWeight="0.49016643" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20726173" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20726173" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3191801" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -754,7 +742,6 @@
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280507" sideWeight="0.49546143" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329429" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Concurrent Activities Diagram" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -778,7 +765,8 @@
     <MESSAGE value="多线程，队列 调试" />
     <MESSAGE value="执行jmx脚本模块：主线程启动子线程执行脚本，主线程负责打印队列中的消息，如果遇到某jmx执行完成的消息，则启动取报告线程，" />
     <MESSAGE value="1.performance test创建view,model,form，页面上传文件" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.performance test创建view,model,form，页面上传文件" />
+    <MESSAGE value="bootstrap table创建" />
+    <option name="LAST_COMMIT_MESSAGE" value="bootstrap table创建" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -799,57 +787,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/Python35/Lib/site-packages/pymysql/connections.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14955">
-          <caret line="1017" column="0" lean-forward="false" selection-start-line="1017" selection-start-column="0" selection-end-line="1017" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/polls/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="40" column="34" lean-forward="false" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python35/Lib/site-packages/django/forms/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6285">
-          <caret line="437" column="8" lean-forward="false" selection-start-line="437" selection-start-column="8" selection-end-line="437" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appaction/testmain.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python35/Lib/site-packages/paramiko/client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="477" column="78" lean-forward="true" selection-start-line="477" selection-start-column="78" selection-end-line="477" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python35/Lib/site-packages/paramiko/sftp_client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12600">
-          <caret line="864" column="0" lean-forward="false" selection-start-line="864" selection-start-column="0" selection-end-line="864" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appaction/testThread.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/appaction/fetchReportThread.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -1012,6 +949,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="62" column="25" lean-forward="false" selection-start-line="62" selection-start-column="16" selection-end-line="62" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1078,7 +1018,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#53#0" expanded="true" />
+            <element signature="e#0#53#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1181,12 +1121,80 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/pfmApp/jmeterServerbBak.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="130" column="4" lean-forward="false" selection-start-line="130" selection-start-column="4" selection-end-line="130" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/pfmApp/jmeterServer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="48" column="31" lean-forward="false" selection-start-line="48" selection-start-column="31" selection-end-line="56" selection-end-column="21" />
+        <state relative-caret-position="234">
+          <caret line="37" column="35" lean-forward="false" selection-start-line="37" selection-start-column="35" selection-end-line="37" selection-end-column="35" />
           <folding>
-            <element signature="e#1499#1506#1#HTML" expanded="true" />
+            <element signature="e#74#101#0#HTML" expanded="true" />
+            <element signature="e#339#362#0#HTML" expanded="true" />
+            <element signature="e#960#984#0#HTML" expanded="true" />
+            <element signature="e#1036#1060#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/bootstrap-table.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/bootstrap-table.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/bootstrap-table-locale-all.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/bootstrap-table.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/bootstrap-table.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="2309" column="85" lean-forward="true" selection-start-line="2309" selection-start-column="85" selection-end-line="2309" selection-end-column="85" />
+          <folding>
+            <marker date="1524145299000" expanded="true" signature="15344:15810" ph="..." />
+            <marker date="1524145299000" expanded="true" signature="15461:15767" ph="..." />
+            <marker date="1524145299000" expanded="true" signature="15562:15681" ph="..." />
+            <marker date="1524145299000" expanded="true" signature="15604:15666" ph="..." />
+            <marker date="1524145299000" expanded="true" signature="20761:20820" ph="..." />
+            <marker date="1524145299000" expanded="true" signature="52837:52943" ph="..." />
+            <marker date="1524145299000" expanded="true" signature="56081:56436" ph="..." />
+            <marker date="1524145299000" expanded="true" signature="70951:70957" ph=" " />
           </folding>
         </state>
       </provider>
