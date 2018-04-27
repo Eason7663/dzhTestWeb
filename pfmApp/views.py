@@ -17,8 +17,8 @@ def script_upload_action(request):
     if request.method == "POST":
 
         handle_upload_file(request.FILES['file'], str(request.FILES['file']))
-        jsmf = JmeterSvrModelForm(request.POST)
-        return render(request, "pfmApp/jmeterServer.html", {'form': jsmf})
+        # jsmf = JmeterSvrModelForm(request.POST)
+        # return render(request, "pfmApp/jmeterServer.html", {'form': jsmf})
 
         # return HttpResponse('Successful')  # 此处简单返回一个成功的消息，在实际应用中可以返回到指定的页面中
 

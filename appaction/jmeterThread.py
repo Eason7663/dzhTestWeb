@@ -25,7 +25,7 @@ from appaction.fetchReportThread import FetchReportThread
 
 
 class jmxRunThread(threading.Thread):
-    taskList = ["concept_100"]  # ,"concept_200","concept_300","concept_400"]
+    taskList = ["concept_100","concept_200","concept_300","concept_400"]
     msgQueue = Queue()
     def __init__(self,jmeterServer,threadName):
         threading.Thread.__init__(self,name=threadName)
@@ -41,7 +41,7 @@ class jmxRunThread(threading.Thread):
 
     def run(self):
 
-        while True:
+        while len(self.taskList) >0:
             if False:
                 break
             s = self.taskList.pop(0)

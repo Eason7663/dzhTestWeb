@@ -1,64 +1,71 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <div class="container" role="main">
+    {#    <div class="line line-dashed line-lg pull-in"></div>#}
+    <div class="container">
         <h1>Create Performance Test</h1>
-        <h4>Step1: 导入脚本文件</h4>
-        <div id="add">
-            <form class="form-inline" enctype="multipart/form-data"
-                  accept-charset="utf-8">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label class="sr-only" for="name">名称</label>
-                    <input name="casefilepath" type="text" class="form-control" id="name" placeholder="请输入名称">
+        <div class="col-xs-6 row-fluid">
+            {#            <form></form>#}
+            {#            <h4>Step1：导入jmx脚本</h4>#}
+            {#            <input id="jmx_file" name="jmx_file" type="file" multiple class="file"#}
+            {#                   data-show-upload="true" data-show-caption="true"#}
+            {#                   data-show-preview="false" data-allowed-file-extensions='["jmx"]'>#}
+            {#            <script>#}
+            {##}
+            {#            </script>#}
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fileInputModal">
+                Launch Modal
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="fileInputModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="file-loading">
+                                <input id="input-b9" name="input-b9[]" multiple type="file">
+                            </div>
+                            <div id="kartik-file-errors"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" title="Your custom upload logic">Save</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="sr-only" for="inputfile">文件输入</label>
-                                    {% csrf_token %}
-{#                    <input name="file" type="file" id="inputfile">#}
-{#                    <input type="file" name="image" class="projectfile" value="${deal.image}"/>#}
-                    <input id="input-b2" name="file" type="file" class="file" data-show-preview="false">
-                    <button type="submit" class="btn btn-primary" onclick="FileUpload()">导入脚本文件</button>
-                    <script src="/static/js/jquery-3.3.1.js"></script>
-                    <script>
-                        function FileUpload() {
-                            var form_data = new FormData();
-                            var file_info = $('#file_upload')[0].files[0];
-                            form_data.append('file', file_info);
-                            //if(file_info==undefined)暂且不许要判断是否有附件
-                            //alert('你没有选择任何文件');
-                            //return false
-                            $.ajax({
-                                url: '/performance/script/upload',
-                                type: 'POST',
-                                data: form_data,
-                                processData: false,  // tell jquery not to process the data
-                                contentType: false, // tell jquery not to set contentType
-                                success: function (callback) {
+            </div>
+            <script src="/static/js/jquery-3.3.1.js"></script>
+            <script type="text/javascript" src="/static/js/fileinput.min.js"></script>
 
-                                    console.log('ok')
-                                }
-                            });
-
-                        }</script>
-                </div>
-            </form>
+            <script>
+                {#$(document).on('ready', function () {#}
+                {#    $("#input-b9").fileinput({#}
+                {#        showPreview: false,#}
+                {#        showUpload: false,#}
+                {#        elErrorContainer: '#kartik-file-errors',#}
+                {#        allowedFileExtensions: ["jpg", "png", "gif"]#}
+                {#        uploadUrl: '/site/file-upload-single'#}
+                {#    });#}
+                {#});#}
+            </script>
         </div>
-        <div>
-            <input type="file" name="file" id="file_upload">
-            <input type="button" value="上传" onclick="FileUpload()">
-
-        </div>
-        <h2></h2>
-        <h4>Step2：填写服务器配置</h4>
-        <div>
-            <form class="form" method="post" action="/testcase/post/add">
+        <div class="col-xs-8 row-fluid">
+            <h4>Step2：填写服务器配置</h4>
+            <form class="form" method="post" action="/performance/case/add">
                 {% csrf_token %}
                 {#            <fieldset>#}
                 {% for foo in form %}
                     <div class="container-fluid">
                         <div class="row">
-                            <label class="col-md-1 control-label"
+                            <label class="col-md-3 control-label"
                                    style="left: auto; font-feature-settings: inherit"> {{ foo.label }}:</label>
                             <div class="col-md-3 col-md-10">
                                 {{ foo }}
@@ -68,11 +75,11 @@
                     </div>
                     <h5></h5>
                 {% endfor %}
-
-                <button type="submit" class="btn btn-primary">创建</button>
+                <button type="button" class="btn btn-primary">创建</button>
                 {#            </fieldset>#}
             </form>
         </div>
+
     </div>
 
 {% endblock %}
