@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Step1：导入jmx脚本
+        </div>
+        <div class="panel-body">
+            <form method="post" enctype="multipart/form-data" action="/pfmApp/script/upload">
+                {% csrf_token %}
+
+                <input type="file" name="file" id="input-b6" class="file-input"/>
+                <script>
+                    $(document).on('ready', function () {
+                        $("input-b6").fileinput({
+                            showUpload: false,
+                            dropZoneEnabled: false,
+                            maxFileCount: 10,
+                            mainClass: "input-group-lg"
+                        });
+                    });
+                </script>
+                <button type="submit" name="savejmx" class="btn btn-primary">Submit</button>
+                <button type="reset" class="btn btn-default">Reset</button>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Step2：生成用例
+        </div>
+        <div class="panel panel-">
+            <div id="jmxFileTree"></div>
+        </div>
+
+        <script src="/static/js/jquery-3.3.1.js"></script>
+        <script type="text/javascript" src="/static/js/fileinput.min.js"></script>
+        <script type="text/javascript" src="/static/js/bootstrap-treeview.js"></script>
+        {#    <script src="/static/js/fileinput_locale_zh.js"></script>#}
+        <script>
+            function getTree() {
+                // Some logic to retrieve, or generate tree structure
+                var tree = [
+                    {
+                        text: "Parent 1",
+                        nodes: [
+                            {
+                                text: "Child 1",
+                                nodes: [
+                                    {
+                                        text: "Grandchild 1"
+                                    },
+                                    {
+                                        text: "Grandchild 2"
+                                    }
+                                ]
+                            },
+                            {
+                                text: "Child 2"
+                            }
+                        ]
+                    },
+                    {
+                        text: "Parent 2"
+                    },
+                    {
+                        text: "Parent 3"
+                    },
+                    {
+                        text: "Parent 4"
+                    },
+                    {
+                        text: "Parent 5"
+                    }
+                ];
+                return data;
+            }
+
+            var tree = [
+                {
+                    text: "Parent 1",
+                    icon: "glyphicon glyphicon-stop",
+                    {#selectedIcon: "glyphicon glyphicon-stop",#}
+                    color: "#000000",
+                    backColor: "#fff4f4",
+                    href: "#node-1",
+                    selectable: false,
+                    state: {
+                        checked: true,
+                        disabled: false,
+                        expanded: true,
+                        selected: true
+                    },
+                    tags: ['available'],
+                    nodes: [
+                        {
+                            text: "Child 1",
+                            state: {
+                                checked: true,
+                                disabled: false,
+                                expanded: true,
+                                selected: true
+                            },
+                            href: '#####',
+                            nodes: [
+                                {
+                                    text: "{\"Grandchild 1\":\"bb\"}"
+                                },
+                                {
+                                    text: "Grandchild 2"
+                                }
+                            ]
+                        },
+                        {
+                            text: "Child 2"
+                        }
+                    ]
+                },
+                {
+                    text: "Parent 2"
+                },
+                {
+                    text: "Parent 3"
+                },
+                {
+                    text: "Parent 4"
+                },
+                {
+                    text: "Parent 5"
+                }
+            ];
+            $('#jmxFileTree').treeview({
+                data: tree,
+                levels: 5,
+                backColor: 'bright',
+                enableLinks: true,
+                checkedIcon: 'glyphicon glyphicon-check',
+                onNodeSelected: function (event, data) {
+                    alter("msg")
+                }
+
+            });
+            /*
+                menu = {
+                    fileInput: function () {
+                        var oFile = {};
+                        //初始化fileinput控件（第一次初始化）
+                        oFile.Init = function (ctrlName, uploadUrl,ctoken) {
+                            var control = $('#' + ctrlName);
+
+                            //初始化上传控件的样式
+                            control.fileinput({
+                                type: 'post',
+                                language: 'en', //设置语言
+                                uploadUrl: uploadUrl, //上传的地址
+                                showUpload: true, //是否显示上传按钮
+                                showCaption: true,//是否显示标题
+                                browseClass: "btn btn-primary", //按钮样式
+{#fileSingle:file,#}
+                        'theme': 'explorer',
+                        maxFileCount: 10, //表示允许同时上传的最大文件个数
+                        enctype: 'multipart/form-data',
+                        validateInitialCount: true,
+                        previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+                        msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+                        dropZoneEnabled: true,
+                        uploadExtraData: function (previewId, index) {
+                            //向后台传递id作为额外参数，是后台可以根据id修改对应的图片地址。
+                            var obj = {};
+                            obj['csrfmiddlewaretoken']=this.csrf;
+                            return obj;
+                        }
+                    });
+
+                    //导入文件上传完成之后的事件
+                    $("#uploadjmx").on("fileuploaded", function (event, data, previewId, index) {
+                        console.dir(data);           //这是在别人的指点下才会用的，可以查看对象，这里主要是JSON对象
+                        alert(data.files[0].name);
+                        alert("hello")
+                        //$("#div_startimport").show();
+                    });
+                };
+                return oFile;
+            },
+            onSubmit: function () {
+                $("#uploadjmx").fileinput("upload");
+            }
+        };
+        $('#savejmx').on('click',function (){// 提交图片信息 //
+        //先上传文件，然后在回调函数提交表单
+            $('#uploadjmx').fileinput('upload');
+
+        });*/
+
+            /*$(document).ready(function () {
+{#var oFileInput = new menu.fileInput();#}
+            {#oFileInput.Init("uploadjmx", "/performance/script/upload");#}
+            $('file').fileinput();
+        });*/
+
+        </script>
+
+
+{% endblock %}

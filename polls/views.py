@@ -18,16 +18,53 @@ from django.views.decorators.csrf import csrf_protect
 
 
 from polls.models import TestProject, TestSuit,TestCase
-from polls.serializers import TestProjectSerializer
-from polls.forms import TestCaseForm
+from polls.serializers import TestProjectSerializer,TestSuitSerializer,TestCaseSerializer
+from polls.forms import TestProjectForm,TestSuitForm,TestCaseForm
 from polls.permissions import IsOwnerOrReadOnly
 
 
 import time
+
+@login_required
+def project_home_action(request):
+    # jsmf = JmeterSvrModelForm(request.POST)
+    return render(request, "polls/testprojectHome.html")
+
+@login_required
+def suit_home_action(request):
+    # jsmf = JmeterSvrModelForm(request.POST)
+    return render(request, "polls/testsuitHome.html")
+
+@login_required
+def case_home_action(request):
+    # jsmf = JmeterSvrModelForm(request.POST)
+    return render(request, "polls/testcaseHome.html")
+
 @login_required
 def add_case_action(request):
     tcf = TestCaseForm(request.POST)
     return render(request,"polls/testcase_add2.html",{'form':tcf})
+
+@login_required
+def add_project_action(request):
+    print(request.POST)
+    tp = TestProject()
+    tp.name = request.POST.get('name')
+    tp.is_enable = True
+    tp.owner = request.POST.get('owner')
+    tp.description = request.POST.get('description')
+    tp.create_time = request.POST.get('create_time')
+    # if tp.is_valid():
+    try:
+        tp.save()
+    except BaseException:
+        print("error")
+    return JsonResponse({"A":"B"})
+    # else:
+    #     # Do something in case if form is not valid
+    #     # raise Http404
+    #     print("fail")
+    # return JsonResponse({"HELLO":"WORLD"})
 
 from django.forms import Form
 # @csrf_exempt
@@ -248,13 +285,21 @@ from rest_framework import permissions
 from polls.permissions import IsOwnerOrReadOnly
 
 class TestProjectList(generics.ListCreateAPIView):
-    queryset = TestProject.objects.all()
+
     serializer_class = TestProjectSerializer
     # permission_classes = (permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly,)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
-
+    def list(self, request, *args, **kwargs):
+        username = request.session.get('username')
+        queryset = TestProject.objects.filter(owner=username)
+        serializer = TestProjectSerializer(queryset, many=True)
+        #bootstrap table初始化格式 total rows
+        r = {}
+        r['total'] = len(serializer.data)
+        r['rows'] = serializer.data
+        return JsonResponse(r)
     # def get(self, request, *args, **kwargs):
     #     return Response(request.session['username'])
 
@@ -263,6 +308,41 @@ class TestProjectDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TestProjectSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
 
+##############Test suit##################
+class TestSuitList(generics.ListCreateAPIView):
+
+    serializer_class = TestSuitSerializer
+    # permission_classes = (permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+    def list(self, request, *args, **kwargs):
+        username = request.session.get('username')
+        queryset = TestSuit.objects.filter(owner=username)
+        serializer = TestSuitSerializer(queryset, many=True)
+        #bootstrap table初始化格式 total rows
+        r = {}
+        r['total'] = len(serializer.data)
+        r['rows'] = serializer.data
+        return JsonResponse(r)
+
+##############Test suit##################
+class TestCaseList(generics.ListCreateAPIView):
+
+    serializer_class = TestCaseSerializer
+    # permission_classes = (permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+    def list(self, request, *args, **kwargs):
+        username = request.session.get('username')
+        queryset = TestCase.objects.filter(owner=username)
+        serializer = TestCaseSerializer(queryset, many=True)
+        #bootstrap table初始化格式 total rows
+        r = {}
+        r['total'] = len(serializer.data)
+        r['rows'] = serializer.data
+        return JsonResponse(r)
 
 class UserList(generics.ListAPIView):
     queryset = User.objects.all()

@@ -13,8 +13,8 @@ class TestProject(models.Model):
     # 名称
     name = models.CharField(max_length=64)
     is_enable = models.BooleanField(default=True)
-    suit_number = models.BigIntegerField(default=0)
-    last_modified = models.DateTimeField(auto_now=True)
+    suit_number = models.BigIntegerField(default=0,null=True)
+    last_modified = models.DateTimeField(auto_now=True,null=True)
     # owner
     owner = models.CharField(max_length=64)
     #描述
@@ -44,7 +44,7 @@ class TestSuit(models.Model):
     is_enable = models.BooleanField(default=True)
     case_number = models.BigIntegerField(default=0)
     last_modified = models.DateTimeField(auto_now=True)
-    owner = models.CharField(max_length=32)
+    owner = models.CharField(max_length=64)
     pass_case = models.IntegerField()
     fail_case = models.IntegerField()
     #描述
@@ -69,6 +69,7 @@ class TestCase(models.Model):
     description = models.CharField(max_length=256,verbose_name="描述",null=True)
     on_going = models.BooleanField(default=True,verbose_name="正在执行")
     url = models.URLField(default="http://127.0.0.1:8001/",verbose_name="完整URL",null=True)
+    owner = models.CharField(default='',max_length=32,null=True)
 
     def __str__(self):
         return self.name

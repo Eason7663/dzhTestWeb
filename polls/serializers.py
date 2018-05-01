@@ -7,7 +7,7 @@
 """
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from polls.models import TestProject,TestCase
+from polls.models import TestProject,TestSuit,TestCase
 import time
 
 class TestProjectSerializer(serializers.ModelSerializer):
@@ -52,6 +52,11 @@ class TestProjectSerializer(serializers.ModelSerializer):
 #         instance.save()
 #         return instance
 
+class TestSuitSerializer(serializers.ModelSerializer):
+    # owner = serializers.ReadOnlyField(source='owner.username')
+    class Meta:
+        model = TestSuit
+        fields = '__all__'
 
 
 class UserSerializer(serializers.ModelSerializer):

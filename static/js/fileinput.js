@@ -1388,7 +1388,7 @@
         },
         _listen: function () {
             var self = this, $el = self.$element, $form = self.$form, $cont = self.$container, fullScreenEvents;
-            self._handler($el, 'click', function(e) {
+            self._handler($el, 'click', function (e) {
                 if ($el.hasClass('file-no-browse')) {
                     if ($el.data('zoneClicked')) {
                         $el.data('zoneClicked', false);
@@ -1901,10 +1901,10 @@
                 });
             });
         },
-        _inputFileCount: function() {
+        _inputFileCount: function () {
             return this.$element.get(0).files.length;
         },
-        _refreshPreview: function() {
+        _refreshPreview: function () {
             var self = this, files;
             if (!self._inputFileCount() || !self.showPreview || !self.isPreviewable) {
                 return;
@@ -3773,7 +3773,8 @@
                 var node = ctr + i, previewId = previewInitId + "-" + node, file = files[i], fSizeKB, j, msg,
                     fnText = settings.text, fnImage = settings.image, fnHtml = settings.html, typ, chk, typ1, typ2,
                     caption = file && file.name ? self.slug(file.name) : '', fileSize = (file && file.size || 0) / 1000,
-                    fileExtExpr = '', previewData = file ? $h.objUrl.createObjectURL(file) : null, fileCount = 0, strTypes = '',
+                    fileExtExpr = '', previewData = file ? $h.objUrl.createObjectURL(file) : null, fileCount = 0,
+                    strTypes = '',
                     func, knownTypes = 0, isText, isHtml, isImage, txtFlag, processFileLoaded = function () {
                         var msg = msgProgress.setTokens({
                             'index': i + 1,
@@ -4171,7 +4172,7 @@
                 options = $.extend(true, {}, self.options, options);
             }
             self._init(options, true);
-            self._listen();        
+            self._listen();
             return $el;
         },
         zoom: function (frameId) {
@@ -4451,6 +4452,7 @@
     /**
      * Convert automatically file inputs with class 'file' into a bootstrap fileinput control.
      */
+
     $(document).ready(function () {
         var $input = $('input.file[type=file]');
         if ($input.length) {

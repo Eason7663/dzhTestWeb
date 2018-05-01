@@ -20,13 +20,15 @@ from django.conf.urls import url, include
 from polls.urls import router
 from polls import views
 from pfmApp import views as pfmAppViews
+# from pfmApp.urls import router
 from TestFrameWork import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('polls.urls')),
-    # url(r'^polls/', include('polls.urls')),
+    # url(r'^pfmApp/', include('pfmApp.urls',namespace="pfmApp")),
+    url(r'^polls/$', include('polls.urls')),
     url(r'^accounts/login/', include('polls.urls')),
     url(r'^login_action/$', views.login_action),
     url(r'^logout/$', views.logout_action),
@@ -45,7 +47,8 @@ urlpatterns = [
     url(r'^api/',include(router.urls)),
     ############################pfmApp
     url(r'^performance/case/add$',pfmAppViews.add_jmeter_server_action),
-    url(r'^performance/script/upload$',pfmAppViews.script_upload_action),
+    url(r'^pfmApp/script/upload$',pfmAppViews.script_upload_action),
+    url(r'^jmx/analyze/page$',pfmAppViews.testTable),
 
 
 ]
