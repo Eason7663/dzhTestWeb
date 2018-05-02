@@ -24,8 +24,8 @@ class JmeterSvrModel(models.Model):
 class PfmCaseModel(models.Model):
     name = models.CharField(verbose_name="用例名称",max_length=64)
     scriptName = models.CharField(verbose_name="脚本名称",max_length=64)
-    step = models.IntegerField(verbose_name="单次增加的线程数",max_length=16)
-    count = models.IntegerField(verbose_name="计划执行次数",max_length=16)
+    step = models.IntegerField(verbose_name="单次增加的线程数",)
+    count = models.IntegerField(verbose_name="计划执行次数",)
     class Meta:
         ordering = ('id',)
 
