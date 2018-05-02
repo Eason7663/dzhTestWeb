@@ -27,8 +27,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('polls.urls')),
-    url(r'^pfmApp/$', include('pfmApp.urls',namespace="pfmApp")),
-    url(r'^polls/$', include('polls.urls')),
+    # url(r'^pfmApp/', include('pfmApp.urls',namespace="pfmApp")),
+    url(r'^polls/', include('polls.urls')),
     url(r'^accounts/login/', include('polls.urls')),
     url(r'^login_action/$', views.login_action),
     url(r'^logout/$', views.logout_action),
