@@ -18,7 +18,7 @@
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
             </button>
         </div>
-        {% csrf_token %}
+{#        {% csrf_token %}#}
         <table id="tb_departments" data-toggle="tooltip"></table>
         <script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
         <script src="{% static 'js/bootstrap-table.min.js' %}"></script>
@@ -31,7 +31,7 @@
                 //激活tooltip，必须。
                 $("[data-toggle='tooltip']").tooltip();
             });
-
+            $(function () { $("[data-toggle='tooltip']").tooltip(); });
             $("#tb_departments").bootstrapTable({ // 对应table标签的id
                 method: 'get',
                 url: "/testcase", // 获取表格数据的url
@@ -135,7 +135,8 @@
                         field: 'expected_result',
                         title: '期望结果',
                         align: 'left',
-                        valign: 'middle'
+                        valign: 'middle',
+                        titleTooltip: "this is name"
                     }, {
                         title: "操作",
                         align: 'center',
