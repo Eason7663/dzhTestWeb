@@ -23,6 +23,7 @@ router.register(r'cases',views.TestCaseViewSet)
 
 
 urlpatterns = [
+    ###################返回创建bootstrap table所需的json list
     url(r'^testproject/$', views.TestProjectList.as_view()),
     url(r'^testproject/(?P<pk>[0-9]+)/$', views.TestProjectDetail.as_view()),
     url(r'^testsuit$', views.TestSuitList.as_view()),
@@ -33,8 +34,8 @@ urlpatterns = [
     url(r'^$', views.index, name = 'index'),
     url(r'^api-auth/', include('rest_framework.urls',namespace='rest_framework')),
     url(r'^testproject/add',views.add_project_action),
-    ###################
-    url(r'/project/home$', views.project_home_action),
-    url(r'/suit/home$', views.suit_home_action),
-    url(r'/case/home$', views.case_home_action),
+    ###################主页请求
+    url(r'project/home$', views.project_home_action,name='project_home'),
+    url(r'suit/home$', views.suit_home_action,name='suit_home'),
+    url(r'case/home$', views.case_home_action,name='case_home'),
 ]
