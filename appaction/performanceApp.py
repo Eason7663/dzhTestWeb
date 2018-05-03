@@ -78,6 +78,7 @@ class PerformanceApp():
         for tmp in self.remoteFileList:
             tmpList.append(tmp.split("/")[-1].replace(".jmx",""))
         return tmpList
+
 """
 patten = '<stringProp name="LoopController.loops">(.*?)</stringProp>'
 replace_str = '<stringProp name="LoopController.loops">$loops</stringProp>'

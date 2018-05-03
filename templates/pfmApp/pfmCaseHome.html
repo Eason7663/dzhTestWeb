@@ -24,21 +24,16 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for tc in testcases %}
+                {% for pc in pfmCases %}
                     <tr>
-                        <td>{{ tc.id }}</td>
-                        <td>{{ tc.test_suit }}</td>
-                        <td data-toggle="tooltip" title="{{ tc.name }}">{{ tc.name }}</td>
-                        <td>{{ tc.is_enable }}</td>
-                        <td data-toggle="tooltip" title="{{ tc.url_path }}">{{ tc.url_path }}</td>
-                        <td data-toggle="tooltip" title="{{ tc.url_param }}">{{ tc.url_param }}</td>
-                        <td data-toggle="tooltip" title="{{ tc.expected_result }}">{{ tc.expected_result }}</td>
-                        <td data-toggle="tooltip" title="More details after executing case">
-                            <a id="report_{{ tc.id }}" target="_blank">Null</a>
-                        </td>
+                        <td>{{ pc.id }}</td>
+                        <td data-toggle="tooltip" title="{{ pc.name }}">{{ pc.name }}</td>
+                        <td>{{ pc.scriptName }}</td>
+                        <td data-toggle="tooltip" title="{{ pc.step }}">{{ pc.step }}</td>
+                        <td data-toggle="tooltip" title="{{ pc.count }}">{{ pc.count }}</td>
                         <td>
-                            <button id="fat-btn{{ tc.id }}" class="btn btn-primary"
-                                    type="button" onclick="loadXMLDoc({{ tc.id }})"> 执行
+                            <button id="fat-btn{{ pc.id }}" class="btn btn-primary"
+                                    type="button" onclick="loadXMLDoc({{ pc.id }})"> Start
                             </button>
                             <script type="text/javascript">
                                 function loadXMLDoc(tcid) {
@@ -58,7 +53,7 @@
                                         var temptcid = tcid;
                                         var button = exec_button;
                                         return function () {
-                                            xmlhttp.open("GET", "/execute_case/" + temptcid, true);
+                                            xmlhttp.open("GET", "/pfmApp/execute/case/" + temptcid, true);
                                             xmlhttp.send();
                                             //alert(xmlhttp.readyState + "\n" + xmlhttp.status);
                                             xmlhttp.onreadystatechange = function () {

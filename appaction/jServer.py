@@ -84,23 +84,24 @@ def unGz(file):
     #关闭gzip对象
 
 import os
-def unTar(file):
+def unTar(file,desFilePath):
     """untar zip file"""
     tar = tarfile.open(file)
     names = tar.getnames()
-    if os.path.isdir(file + "_files"):
+    if os.path.isdir(desFilePath):
         pass
     else:
-        os.mkdir(file + "_files")
+        os.mkdir(desFilePath)
     #因为解压后是很多文件，预先建立同名目录
     for name in names:
-        tar.extract(name, file + "_files/")
+        # tar.extract(name, file + "_files/")
+        tar.extract(name, desFilePath)
     tar.close()
 
 if __name__ == '__main__':
-    sshobj = JmeterServer('10.15.107.189','root','znzyjwqqlsjrghwy189',22)
+    # sshobj = JmeterServer('10.15.107.189','root','znzyjwqqlsjrghwy189',22)
     # sshobj.getTarPackage("/opt/apache-jmeter-3.2/bin/","rr")
     # sshobj.close()
     # unGz("rr.tar.gz")
-    # unTar("rr.tar")
-    sshobj.put("../tmp/concept_100.jmx","/opt/concept_100.jmx")
+    unTar("../report/concept_100.jtl.tar.gz","D:\\0DevelopTool\\apache-jmeter-3.2\\bin")
+    # sshobj.put("../tmp/concept_100.jmx","/opt/concept_100.jmx")

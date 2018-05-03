@@ -13,23 +13,21 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls import url, include
 # from rest_framework.authtoken.views import  obtain_auth_token
 from polls.urls import router
 from polls import views
-from pfmApp import views as pfmAppViews
+from pfmApp.view import pfmCaseView as pfmAppViews
+
 # from pfmApp.urls import router
-from TestFrameWork import settings
-from django.conf.urls.static import static
 
 urlpatterns = [
     ###pfmApp
-    url(r'^pfmApp/', include('pfmApp.urls')),
+    url(r'^pfmApp/', include('pfmApp.urls'),name='pfmApp'),
     ###polls
-    url(r'^polls/', include('polls.urls')),
-    url(r'^admin/', admin.site.urls),
+    url(r'^polls/', include('polls.urls'),name='polls'),
+    url(r'^admin/', admin.site.urls,),
     url(r'^', include('polls.urls')),
     url(r'^accounts/login/', include('polls.urls')),
     url(r'^login_action/$', views.login_action),

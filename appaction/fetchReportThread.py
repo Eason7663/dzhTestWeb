@@ -13,8 +13,10 @@
 """
 import threading
 import paramiko
+import os
+import tarfile
 from queue import Queue
-msgQueue = Queue()
+# msgQueue = Queue()
 
 class JmeterServer():
     def __init__(self,host,username,password,path,port=22):
@@ -25,7 +27,7 @@ class JmeterServer():
         self.path = path
 
 class FetchReportThread(threading.Thread):
-    def __init__(self,jmeterServer,reportName,threadName):
+    def __init__(self,jmeterServer,reportName,msgQueue,threadName):
         threading.Thread.__init__(self,name=threadName)
         self.jmeterServer =jmeterServer
         self.reportName =reportName
@@ -38,6 +40,7 @@ class FetchReportThread(threading.Thread):
         self.obj.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         self.obj.connect(self.host,self.port,self.username,self.password)
         self.objsftp = self.obj.open_sftp()
+        self.msgQueue = msgQueue
 
     def getTarPackage(self):
         remotepath =self.jmeterServer.path
@@ -47,25 +50,50 @@ class FetchReportThread(threading.Thread):
                                                      + "tar -zvcf /tmp/" + packageName
                                                      + ".tar.gz " + packageName)
         msg = stdout.read().decode()
-        msgQueue.put(msg)
+        self.msgQueue.put(msg)
         print(stderr.read().decode())
         # fileName =
-        self.objsftp.get("/tmp/" + packageName + ".tar.gz", "../report/" + packageName + ".tar.gz")
+        self.objsftp.get("/tmp/" + packageName + ".tar.gz", "report/" + packageName + ".tar.gz")
         msg = stdout.read().decode()
-        msgQueue.put(msg)
+        self.msgQueue.put(msg)
         print(stderr.read().decode())
         self.objsftp.remove("/tmp/" + packageName + ".tar.gz")
-        self.objsftp.remove(remotepath+packageName+".jtl")
+        self.objsftp.remove(remotepath+packageName)
         # self.objsftp.remove(remotepath+packageName)
         # self.objsftp.rmdir(remotepath+packageName)
-        msgQueue.put("get package from " + packageName + " ok......")
+        self.msgQueue.put("get package from " +remotepath+ packageName + " ok......")
+
+    def unTar(self,desFilePath):
+        """untar zip file"""
+        file = 'report/'+ self.reportName+".tar.gz"
+        tar = tarfile.open(file)
+        names = tar.getnames()
+        if os.path.isdir(desFilePath):
+            pass
+        else:
+            os.mkdir(desFilePath)
+        # 因为解压后是很多文件，预先建立同名目录
+        for name in names:
+            # tar.extract(name, file + "_files/")
+            tar.extract(name, desFilePath)
+        tar.close()
+
+    def jtl2Html(self,path):
+        cmd = "{path}\\"+"jmeter -g " + "{path}\\"+self.reportName + "-e -o " + "{path}\\"+self.reportName.replace(".jtl","").format(path=path)
+        print(cmd)
+        mystr = os.popen(cmd)
+        mystr = mystr.read()  # 读取输出
+        print("hello", mystr)
 
     def close(self):
         self.obj.close()
 
     def run(self):
         self.getTarPackage()
+        self.unTar("D:\\0DevelopTool\\apache-jmeter-3.2\\bin")
+        self.jtl2Html("D:\\0DevelopTool\\apache-jmeter-3.2\\bin")
         self.close()
+
 
 if __name__ == "__main__":
     host = "10.15.107.189"
@@ -76,6 +104,6 @@ if __name__ == "__main__":
     t = FetchReportThread(jmeterServer,"concept_100","concept_100Thread")
     t.start()
     while True:
-        print(msgQueue.get())
+        print(t.msgQueue.get())
 
 
