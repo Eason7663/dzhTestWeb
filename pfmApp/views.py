@@ -17,7 +17,7 @@ def add_jmeter_server_action(request):
 
 @login_required
 def testTable(request):
-    return render(request, "pfmApp/jmxUpload.html")
+    return render(request, "pfmApp/pfmCaseHome.html")
 
 @login_required
 def script_upload_action(request):

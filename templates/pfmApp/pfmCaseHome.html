@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="container" role="main">
+    <h1>Performance case</h1>
+            <div class="container" >
+            <table class="table table-strip table-hover">
+                <colgroup>
+                    <col ></col>
+                    <col></col>
+                    <col></col>
+                    <col></col>
+                    <col ></col>
+                    <col ></col>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>名称</th>
+                    <th>script</th>
+                    <th>step</th>
+                    <th>count</th>
+                    <th>执行</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for tc in testcases %}
+                    <tr>
+                        <td>{{ tc.id }}</td>
+                        <td>{{ tc.test_suit }}</td>
+                        <td data-toggle="tooltip" title="{{ tc.name }}">{{ tc.name }}</td>
+                        <td>{{ tc.is_enable }}</td>
+                        <td data-toggle="tooltip" title="{{ tc.url_path }}">{{ tc.url_path }}</td>
+                        <td data-toggle="tooltip" title="{{ tc.url_param }}">{{ tc.url_param }}</td>
+                        <td data-toggle="tooltip" title="{{ tc.expected_result }}">{{ tc.expected_result }}</td>
+                        <td data-toggle="tooltip" title="More details after executing case">
+                            <a id="report_{{ tc.id }}" target="_blank">Null</a>
+                        </td>
+                        <td>
+                            <button id="fat-btn{{ tc.id }}" class="btn btn-primary"
+                                    type="button" onclick="loadXMLDoc({{ tc.id }})"> 执行
+                            </button>
+                            <script type="text/javascript">
+                                function loadXMLDoc(tcid) {
+
+                                    exec_button = document.getElementById("fat-btn" + tcid);
+                                    report_button = document.getElementById("report_" + tcid);
+                                    exec_button.innerHTML = "执行中...";
+                                    var xmlhttp;
+                                    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                                        xmlhttp = new XMLHttpRequest();
+                                    }
+                                    else {// code for IE6, IE5
+                                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                                    }
+
+                                    function request(tcid, exec_button, report_button) {
+                                        var temptcid = tcid;
+                                        var button = exec_button;
+                                        return function () {
+                                            xmlhttp.open("GET", "/execute_case/" + temptcid, true);
+                                            xmlhttp.send();
+                                            //alert(xmlhttp.readyState + "\n" + xmlhttp.status);
+                                            xmlhttp.onreadystatechange = function () {
+
+                                                if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                                                    if (xmlhttp.responseText === "True") {
+                                                        button.className = "btn btn-success";
+                                                    }
+                                                    if (xmlhttp.responseText === "False") {
+                                                        button.className = "btn btn-danger";
+                                                    }
+                                                    button.innerHTML = xmlhttp.responseText;
+                                                    report_button.innerHTML = "Detail";
+                                                    report_button.setAttribute("href", "/execute_case/detail/" + temptcid);
+                                                }
+                                            };
+                                        }
+                                    }
+
+                                    var req = request(tcid, exec_button, report_button);
+                                    req();
+
+                                }
+                            </script>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+{% endblock %}
