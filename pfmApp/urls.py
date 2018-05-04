@@ -7,7 +7,7 @@
 """
 
 from django.conf.urls import url
-from pfmApp.view import pfmCaseView
+from pfmApp.view import pfmCaseView,websocketSvrView
 from rest_framework.routers import SimpleRouter
 
 router = SimpleRouter()
@@ -16,5 +16,6 @@ router = SimpleRouter()
 urlpatterns = [
     url(r'^jmx/analyze/$', pfmCaseView.testTable, name="jmx_analyze"),
     url(r'pfmCase/home$', pfmCaseView.testTable),
-    url(r'execute/case/(?P<case_id>[0-9]+)', pfmCaseView.execute_pfmCase)
+    url(r'execute/case/(?P<case_id>[0-9]+)', pfmCaseView.execute_pfmCase),
+    url(r'webClient', websocketSvrView.echo)
 ]

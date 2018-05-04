@@ -78,12 +78,13 @@ class FetchReportThread(threading.Thread):
             tar.extract(name, desFilePath)
         tar.close()
 
-    def jtl2Html(self,path):
-        cmd = "{path}\\"+"jmeter -g " + "{path}\\"+self.reportName + "-e -o " + "{path}\\"+self.reportName.replace(".jtl","").format(path=path)
+    def jtl2Html(self,binPath):
+        cmd = "{path}\jmeter -g {path}\{jtlName} -e -o report\{reportName}".format(
+            path=binPath,jtlName=self.reportName,reportName=self.reportName.replace(".jtl",""))
         print(cmd)
         mystr = os.popen(cmd)
         mystr = mystr.read()  # 读取输出
-        print("hello", mystr)
+        # print("hello", mystr)
 
     def close(self):
         self.obj.close()

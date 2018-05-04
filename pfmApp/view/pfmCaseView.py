@@ -39,7 +39,6 @@ def execute_pfmCase(request,case_id):
     pfmCase = PfmCaseModel.objects.get(id=case_id)
     t = JmxRunThread(jmeterServer,pfmCase,"JsvrThread")
 
-
     t.initTaskList()
     t.start()
     # reportName = "concept_100.jtl"

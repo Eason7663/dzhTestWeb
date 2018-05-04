@@ -2,16 +2,16 @@
 {% block content %}
 
     <div class="container" role="main">
-    <h1>Performance case</h1>
-            <div class="container" >
+        <h1>Performance case</h1>
+        <div class="container">
             <table class="table table-strip table-hover">
                 <colgroup>
-                    <col ></col>
                     <col></col>
                     <col></col>
                     <col></col>
-                    <col ></col>
-                    <col ></col>
+                    <col></col>
+                    <col></col>
+                    <col></col>
                 </colgroup>
                 <thead>
                 <tr>
@@ -33,7 +33,7 @@
                         <td data-toggle="tooltip" title="{{ pc.count }}">{{ pc.count }}</td>
                         <td>
                             <button id="fat-btn{{ pc.id }}" class="btn btn-primary"
-                                    type="button" onclick="loadXMLDoc({{ pc.id }})"> Start
+                                    type="button" onclick="lanchConsole()"> Start
                             </button>
                             <script type="text/javascript">
                                 function loadXMLDoc(tcid) {
@@ -75,7 +75,77 @@
 
                                     var req = request(tcid, exec_button, report_button);
                                     req();
+                                }
 
+
+                                function lanchConsole() {
+                                    $('#myModal').modal({
+                                        keyboard: true
+                                    });}
+                                function startWS() {
+
+                                    recv = function (data) {
+                                        var reader = new FileReader;
+                                        reader.onload = function (e) {
+                                            console.log((new Date()).toTimeString() + " " + e.target.result)
+                                        };
+                                        reader.readAsText(data);
+                                        console.log((new Date()).toTimeString() + " " + data);
+                                    };
+
+
+                                    var webSocket = new WebSocket('ws://127.0.0.1:8001/pfmApp/webClient');
+                                    webSocket.onerror = function (event) {
+                                        onError(event)
+                                    };
+
+                                    webSocket.onopen = function (event) {
+                                        onOpen(event)
+                                    };
+
+                                    webSocket.onmessage = function (event) {
+                                        onMessage(event)
+                                    };
+
+                                    webSocket.onclose = function (event) {
+                                        onClose(event)
+                                    };
+
+                                    function onMessage(event) {
+                                        data = event.data;
+                                        //var reader = new FileReader;
+                                        //reader.onload = function(e) { document.getElementById('messages').innerHTML +=(new Date()).toTimeString() + " " + e.target.result }
+                                        //reader.readAsText(data);
+                                        document.getElementById('messages').innerHTML += '<br />' + data;
+                                    }
+
+                                    function onOpen(event) {
+                                        document.getElementById('messages').innerHTML = 'Connection established';
+                                    }
+
+                                    function onError(event) {
+                                        alert(event.data);
+                                    }
+
+                                    function onClose(event) {
+                                        document.getElementById('messages').innerHTML = 'have close connection';
+                                        alert(event.data);
+                                    }
+
+                                    function start() {
+                                        webSocket.send('start');
+                                        return false;
+                                    }
+                                    return webSocket
+
+                                }
+                                var startWs = lanchConsole();
+
+                                function closews() {
+                                    {#webSocket.send('close');#}
+                                    startWs.close();
+                                    alert("close");
+                                    return false;
                                 }
                             </script>
                         </td>
@@ -86,5 +156,24 @@
         </div>
 
     </div>
+
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" data-width="700px" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">测试正在进行中</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="messages" style="height:200px;overflow:auto;"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" onclick="startWS()">开始</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
 
 {% endblock %}
