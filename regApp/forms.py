@@ -13,11 +13,11 @@
 """
 from django import forms
 from django.http import HttpResponse, HttpResponseRedirect,JsonResponse
-from polls.models import TestProject,TestSuit,TestCase
+from regApp.models import TestProjectModel,TestSuitModel,TestCaseModel
 
 class TestCaseForm(forms.ModelForm):
     class Meta:
-        model = TestCase
+        model = TestCaseModel
         # fields = '__all__'
         # fields = '__all__'xclude('url')
         # 创建表单的时候，url，real_result不用填
@@ -41,10 +41,10 @@ class TestCaseForm(forms.ModelForm):
 
 class TestProjectForm(forms.ModelForm):
     class Meta:
-        model = TestProject
+        model = TestProjectModel
         fields = '__all__'
 
 class TestSuitForm(forms.ModelForm):
     class Meta:
-        model = TestSuit
+        model = TestSuitModel
         fields = '__all__'

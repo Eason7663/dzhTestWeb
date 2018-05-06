@@ -7,13 +7,13 @@
 """
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from polls.models import TestProject,TestSuit,TestCase
+from regApp.models import TestProjectModel,TestSuitModel,TestCaseModel
 import time
 
 class TestProjectSerializer(serializers.ModelSerializer):
     # owner = serializers.ReadOnlyField(source='owner.username')
     class Meta:
-        model = TestProject
+        model = TestProjectModel
         fields = '__all__'
 
 # class TestProjectSerializer(serializers.Serializer):
@@ -55,12 +55,12 @@ class TestProjectSerializer(serializers.ModelSerializer):
 class TestSuitSerializer(serializers.ModelSerializer):
     # owner = serializers.ReadOnlyField(source='owner.username')
     class Meta:
-        model = TestSuit
+        model = TestSuitModel
         fields = '__all__'
 
 
 class UserSerializer(serializers.ModelSerializer):
-    testProjects = serializers.PrimaryKeyRelatedField(many=True, queryset=TestProject.objects.all())
+    testProjects = serializers.PrimaryKeyRelatedField(many=True, queryset=TestProjectModel.objects.all())
 
     class Meta:
         model = User
@@ -70,7 +70,7 @@ class TestCaseSerializer(serializers.ModelSerializer):
     # statusDisplay = serializers.SerializerMethodField()
     # links = serializers.SerializerMethodField()
     class Meta:
-        model = TestCase
+        model = TestCaseModel
         fields = "__all__"
 
 class UserRegisterSerializer(serializers.ModelSerializer):

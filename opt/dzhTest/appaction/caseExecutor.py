@@ -8,7 +8,7 @@
 # import os
 # os.environ.update({"DJANGO_SETTINGS_MODULE": "TestFrameWork.settings"
 from django.test.testcases import *
-from polls.models import TestCase
+from regApp.models import TestCaseModel
 from conf.constConf import yunconsole_config
 from utils.cmpKeys import CmpKeys
 import json

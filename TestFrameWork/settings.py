@@ -38,10 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'polls',
+    'regApp',
     'pfmApp',
     # 'markdown_deux',
     'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 
@@ -136,3 +137,7 @@ STATIC_ROOT = '/'
 STATICFILES_DIRS = (
  os.path.join(BASE_DIR, "static/"),
 )
+
+# AUTHENTICATION_BACKENDS=(
+#
+# )

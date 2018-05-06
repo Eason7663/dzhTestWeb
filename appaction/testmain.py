@@ -5,6 +5,6 @@
 @file: testmain.py
 @time: 2018/04/15
 """
-from polls.models import *
+from regApp.models import *
 if __name__=="__main__":
     print("********")

@@ -18,7 +18,7 @@
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
             </button>
         </div>
-{#        {% csrf_token %}#}
+        {% csrf_token %}
         <table id="tb_departments" data-toggle="tooltip"></table>
         <script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
         <script src="{% static 'js/bootstrap-table.min.js' %}"></script>
@@ -31,10 +31,10 @@
                 //激活tooltip，必须。
                 $("[data-toggle='tooltip']").tooltip();
             });
-            $(function () { $("[data-toggle='tooltip']").tooltip(); });
+
             $("#tb_departments").bootstrapTable({ // 对应table标签的id
                 method: 'get',
-                url: "/polls/testcase", // 获取表格数据的url
+                url: "/regApp/testsuit", // 获取表格数据的url
                 toolbar: '#toolbar',                //工具按钮用哪个容器
                 striped: true,                      //是否显示行间隔色
                 cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -96,13 +96,13 @@
                         width: '50'
                     }, {
                         field: 'name',
-                        title: '用例名称',
+                        title: '组件名称',
                         align: 'center',
                         valign: 'middle',
-                        width: '150'
+                        width:'150'
                     }, {
-                        field: 'test_suit',
-                        title: '所属组件',
+                        field: 'case_number',
+                        title: '用例总数',
                         align: 'center',
                         valign: 'middle',
                         width: '80',
@@ -120,35 +120,28 @@
                             return text;
                         }
                     }, {
-                        field: 'url_path',
-                        title: 'Path',
-                        align: 'center',
-                        valign: 'middle',
-                        width: '200'
-                    }, {
-                        field: 'url_param',
-                        title: 'Param',
-                        align: 'center',
-                        valign: 'middle',
-                        width: '200'
-                    }, {
-                        field: 'expected_result',
-                        title: '期望结果',
+                        field:'owner',
+                        title:'创建者',
+                        align:'center',
+                        valign:'middle',
+                        width:'200'
+                },
+                    {
+                        field: 'description',
+                        title: '描述',
                         align: 'left',
-                        valign: 'middle',
-                        titleTooltip: "this is name"
-                    }, {
+                        valign: 'middle'
+                    },{
                         title: "操作",
                         align: 'center',
                         valign: 'middle',
                         width: 160, // 定义列的宽度，单位为像素px
-                        formatter: function (value, row, index) {
+                    formatter: function (value, row, index) {
 
-                            var btn= '<button id="fat-btn_' + row.id + '" class="btn btn-primary" type="button" onclick="executeCase(\'' + row.id + '\')">' + 'Run' + '</button> ';
-                            var rep= '<a id="report_' + row.id + '" target="_blank">' + 'Null' + '</a> ';
-                            return btn+rep
-
-                        }
+                        var e = '<a href="#" mce_href="#" onclick="edit(\'' + row.id + '\')">'+'Run'+'</a> ';
+                        {#var btn = '<button class="btn btn-primary" type="button" onclick="executeTestCase(\'' + row.id + '\')">'+'Run'+'</button>';#}
+                        return e ;
+                    }
                     }
                 ],
                 onLoadSuccess: function () {  //加载成功时执行
@@ -159,24 +152,27 @@
                     alter("fail");
                     console.info("加载数据失败");
                 },
+                onClickRow: function (row) {
+                    window.location.href = "/testproject/" + row.id;
+                },
                 onEditableSave: function (field, row, oldValue, $el) {
-                    $.ajax({
-                        type: "post",
-                        url: "/Editable/Edit",
-                        data: {strJson: JSON.stringify(row)},
-                        success: function (data, status) {
-                            if (status == "success") {
-                                alert("编辑成功");
-                            }
-                        },
-                        error: function () {
-                            alert("Error");
-                        },
-                        complete: function () {
-
+                $.ajax({
+                    type: "post",
+                    url: "/Editable/Edit",
+                    data: { strJson: JSON.stringify(row) },
+                    success: function (data, status) {
+                        if (status == "success") {
+                            alert("编辑成功");
                         }
+                    },
+                    error: function () {
+                        alert("Error");
+                    },
+                    complete: function () {
 
-                    });
+                    }
+
+                });
                 }
             });
 
@@ -187,71 +183,229 @@
             function add_another_project() {
                 $('#myModal2').modal('hide');
             }
-            // 添加入库操作
-            function add_project() {
-                //获取表单数据
-                var form_data = $("#form_project_modal").serialize();
 
-                $.ajax(
-                    {
-                        url: "/testproject/add",
-                        dataType: "json",
-                        type: "post",
-                        data: form_data,
-                        success: function (result) {
-                            $('#myModal2').modal('show');
-                            console.log(result);//打印服务端返回的数据(调试用)
-                            if (result.resultCode == 200) {
-                                alert("SUCCESS");
+            function showAddModal() {
+                {#function loadXMLDoc() {#}
+                {#    var xmlhttp;#}
+                {#    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari#}
+                {#        xmlhttp = new XMLHttpRequest();#}
+                {#    }#}
+                {#    else {// code for IE6, IE5#}
+                {#        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");#}
+                {#    }#}
+                {#    xmlhttp.onreadystatechange = function () {#}
+                {#        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {#}
+                {#document.getElementById("myDiv").innerHTML = xmlhttp.responseText;#}
+                {#            console.log("success" + xmlhttp.responseText);#}
+                {#        }#}
+                {#    };#}
+                {#    xmlhttp.open("GET", "/testcase/add", true);#}
+                {#    xmlhttp.send();#}
+                {#alert(xmlhttp.responseText);#}
+                {#    return xmlhttp.responseText#}
+                {#}#}
+                    {##}
+                    {#loadXMLDoc();#}
+                    {#$get(url,data={});#}
+                    $('#myModal1').modal('show');
+                    {#alert("abc")#}
+                }    // update表单
+                function update_info(id) {
+                    var id = id;
+                    //复杂一点的json的另一种形式
+                    var value2 = {"user_id": "123456", "username": "coolcooldool"};
+
+
+                    // $('input[name=username]').removeAttr("readonly");//去除input元素的readonly属性
+                    var obj2 = eval(value2);
+                    // alert(obj2);
+
+                    // 赋值
+                    $("#user_id").val(obj2.user_id);
+                    $("#user_name").val(obj2.username);
+                    $("#act").val("edit");
+
+                    // 将input元素设置为readonly
+                    {#$('#user_id').attr("readonly","readonly")#}
+
+                }
+
+                // 添加入库操作
+                function add_project() {
+                    //获取表单数据
+                    var form_data = $("#form_project_modal").serialize();
+
+                    $.ajax(
+                        {
+                            url: "/testproject/add",
+                            dataType: "json",
+                            type: "post",
+                            data: form_data,
+                            success: function (result) {
+                                $('#myModal2').modal('show');
+                                console.log(result);//打印服务端返回的数据(调试用)
+                                if (result.resultCode == 200) {
+                                    alert("SUCCESS");
+                                }
+                            },
+                            error: function () {
+                                alert("异常！");
                             }
-                        },
-                        error: function () {
-                            alert("异常！");
                         }
+                    );
+                    {#alert(form_data);#}
+
+                }
+
+                //模态框提交表单
+                // 删除表单
+                function delete_info(id) {
+                    if (!id) {
+                        alert('Error！');
+                        return false;
                     }
-                );
-                alert(form_data);
-            }
+                    // var form_data = new Array();
 
-            function executeCase(tcid) {
-                exec_button = document.getElementById("fat-btn_" + tcid);
-                report_button = document.getElementById("report_" + tcid);
-                exec_button.innerHTML = "Running...";
-                                                    var xmlhttp;
-                                    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-                                        xmlhttp = new XMLHttpRequest();
-                                    }
-                                    else {// code for IE6, IE5
-                                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                                    }
+                    $.ajax(
+                        {
+                            url: "action/user_action.php",
+                            data: {"id": id, "act": "del"},
+                            type: "post",
+                            beforeSend: function () {
+                                $("#tip").html("<span style='color:blue'>正在处理...</span>");
+                                return true;
+                            },
+                            success: function (data) {
+                                if (data > 0) {
+                                    alert('操作成功');
+                                    $("#tip").html("<span style='color:blueviolet'>恭喜，删除成功！</span>");
 
-                                    function request(tcid, exec_button, report_button) {
-                                        var temptcid = tcid;
-                                        var button = exec_button;
-                                        return function () {
-                                            xmlhttp.open("GET", "/execute_case/" + temptcid, true);
-                                            xmlhttp.send();
-                                            //alert(xmlhttp.readyState + "\n" + xmlhttp.status);
-                                            xmlhttp.onreadystatechange = function () {
+                                    // document.location.href='world_system_notice.php'
+                                    location.reload();
+                                }
+                                else {
+                                    $("#tip").html("<span style='color:red'>失败，请重试</span>");
+                                    alert('操作失败');
+                                }
+                            },
+                            error: function () {
+                                alert('请求出错');
+                            },
+                            complete: function () {
+                                // $('#tips').hide();
+                            }
+                        });
 
-                                                if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-                                                    if (xmlhttp.responseText === "True") {
-                                                        button.className = "btn btn-success";
-                                                    }
-                                                    if (xmlhttp.responseText === "False") {
-                                                        button.className = "btn btn-danger";
-                                                    }
-                                                    button.innerHTML = xmlhttp.responseText;
-                                                    report_button.innerHTML = "Detail";
-                                                    report_button.setAttribute("href", "/execute_case/detail/" + temptcid);
-                                                }
-                                            };
-                                        }
-                                    }
+                    return false;
+                }
 
-                                    var req = request(tcid, exec_button, report_button);
-                                    req();
-            }
+                // 编辑表单
+                function get_edit_info(user_id) {
+                    if (!user_id) {
+                        alert('Error！');
+                        return false;
+                    }
+                    // var form_data = new Array();
+
+                    $.ajax(
+                        {
+                            url: "action/user_action.php",
+                            data: {"user_id": user_id, "act": "get"},
+                            type: "post",
+                            beforeSend: function () {
+                                // $("#tip").html("<span style='color:blue'>正在处理...</span>");
+                                return true;
+                            },
+                            success: function (data) {
+                                if (data) {
+
+                                    // 解析json数据
+                                    var data = data;
+
+                                    var data_obj = eval("(" + data + ")");
+
+                                    // 赋值
+                                    $("#user_id").val(data_obj.user_id);
+
+                                    $("#name").val(data_obj.name);
+                                    $("#address").val(data_obj.address);
+                                    $("#remark").val(data_obj.remark);
+                                    $("#act").val("edit");
+
+                                    // 将input元素设置为readonly
+                                    $('#user_id').attr("readonly", "readonly")
+                                    // location.reload();
+                                }
+                                else {
+                                    $("#tip").html("<span style='color:red'>失败，请重试</span>");
+                                    //  alert('操作失败');
+                                }
+                            },
+                            error: function () {
+                                alert('请求出错');
+                            },
+                            complete: function () {
+                                // $('#tips').hide();
+                            }
+                        });
+
+                    return false;
+                }
+
+                // 提交表单
+                function check_form() {
+                    var user_id = $.trim($('#user_id').val());
+                    var act = $.trim($('#act').val());
+
+                    if (!user_id) {
+                        alert('用户ID不能为空！');
+                        return false;
+                    }
+                    var form_data = $('#form_data').serialize();
+
+                    // 异步提交数据到action/add_action.php页面
+                    $.ajax(
+                        {
+                            url: "action/user_action.php",
+                            data: {"form_data": form_data, "act": act},
+                            type: "post",
+                            beforeSend: function () {
+                                $("#tip").html("<span style='color:blue'>正在处理...</span>");
+                                return true;
+                            },
+                            success: function (data) {
+                                if (data > 0) {
+
+                                    var msg = "添加";
+                                    if (act == "edit") msg = "编辑";
+                                    $("#tip").html("<span style='color:blueviolet'>恭喜，" + msg + "成功！</span>");
+                                    // document.location.href='system_notice.php'
+                                    alert(msg + "OK！");
+                                    location.reload();
+                                }
+                                else {
+                                    $("#tip").html("<span style='color:red'>失败，请重试</span>");
+                                    alert('操作失败');
+                                }
+                            },
+                            error: function () {
+                                alert('请求出错');
+                            },
+                            complete: function () {
+                                $('#acting_tips').hide();
+                            }
+                        });
+
+                    return false;
+                }
+
+                $(function () {
+                    $('#addUserModal').on('hide.bs.modal', function () {
+                        // 关闭时清空edit状态为add
+                        $("#act").val("add");
+                        location.reload();
+                    })
+                });
 
 
         </script>

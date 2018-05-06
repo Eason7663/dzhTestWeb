@@ -2,6 +2,6 @@
 #-*- coding:utf-8 _*-
 """
 @author:Eason
-@file: testProjectViews.py
-@time: 2018/04/15
+@file: __init__.py.py
+@time: 2018/05/05
 """

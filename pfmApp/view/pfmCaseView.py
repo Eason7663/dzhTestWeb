@@ -17,7 +17,7 @@ def add_jmeter_server_action(request):
 
 
 @login_required
-def testTable(request):
+def pfmCase_home_view(request):
     pfmCase = PfmCaseModel.objects.all()
     username = request.session.get('username', '')
     return render(request, "pfmApp/pfmCaseHome.html",{"user": username,"pfmCases":pfmCase})

@@ -27,7 +27,6 @@ class JmeterServer():
         self.path = path
         time.sleep(1)
 
-
     @classmethod
     def instance(cls, *args, **kwargs):
         with JmeterServer._instance_lock:

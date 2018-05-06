@@ -1,0 +1,325 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="panel-body" style="padding-bottom:0px;">
+
+        <div id="toolbar" class="btn-group">
+            {#            <div>#}
+            <button id="btn_add" type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal"
+                    onclick="showAddModal()">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+            </button>
+            {#            </div>#}
+            <button id="btn_edit" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+            </button>
+            <button id="btn_delete" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+            </button>
+        </div>
+{#        {% csrf_token %}#}
+        <table id="tb_departments" data-toggle="tooltip"></table>
+        <script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap-table.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap-table-locale-all.min.js' %}"></script>
+        <script src="{% static 'locale/bootstrap-table-zh-CN.js' %}"></script>
+        <script type="text/javascript">
+            {#jQuery.noConflict();#}
+            {#$('#btn_add').modal('show');#}
+            $(document).ready(function () {
+                //激活tooltip，必须。
+                $("[data-toggle='tooltip']").tooltip();
+            });
+            $(function () { $("[data-toggle='tooltip']").tooltip(); });
+            $("#tb_departments").bootstrapTable({ // 对应table标签的id
+                method: 'get',
+                url: "/regApp/testcase", // 获取表格数据的url
+                toolbar: '#toolbar',                //工具按钮用哪个容器
+                striped: true,                      //是否显示行间隔色
+                cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                pagination: true,                   //是否显示分页（*）
+                sortable: false,                     //是否启用排序
+                sortOrder: "asc",                   //排序方式
+                {#queryParams: oTableInit.queryParams,//传递参数（*）#}
+                sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+                pageNumber: 1,                       //初始化加载第一页，默认第一页
+                pageSize: 10,                       //每页的记录行数（*）
+                pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+                search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+                strictSearch: true,
+                showColumns: true,                  //是否显示所有的列
+                showRefresh: true,                  //是否显示刷新按钮
+                minimumCountColumns: 2,             //最少允许的列数
+                clickToSelect: true,                //是否启用点击选中行
+                height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+                uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
+                {#showToggle: true,                    //是否显示详细视图和列表视图的切换按钮#}
+                cardView: false,                    //是否显示详细视图
+                detailView: false,                   //是否显示父子表
+                rowStyle: function (row, index) {
+                    //这里有5个取值代表5中颜色['active', 'success', 'info', 'warning', 'danger'];
+                    var strclass = "";
+                    if (row.ORDER_STATUS == "待排产") {
+                        strclass = 'success';//还有一个active
+                    }
+                    else if (row.ORDER_STATUS == "已删除") {
+                        strclass = 'danger';
+                    }
+                    else {
+                        return {};
+                    }
+                    return {classes: strclass}
+                },
+                queryParams: function (params) { // 请求服务器数据时发送的参数，可以在这里添加额外的查询参数，返回false则终止请求
+
+                    return {
+                        {#pageSize: params.limit, // 每页要显示的数据条数#}
+                        {#offset: params.offset, // 每页显示数据的开始行号#}
+                        {#sort: params.sort, // 要排序的字段#}
+                        {#sortOrder: params.order, // 排序规则#}
+                        {#dataId: $("#dataId").val() // 额外添加的参数#}
+                        format: "json"
+                    }
+                },
+                sortName: 'id', // 要排序的字段
+                {#sortOrder: 'desc', // 排序规则#}
+                columns: [
+                    {
+                        checkbox: true, // 显示一个勾选框
+                        align: 'center' // 居中显示
+                    }, {
+                        field: 'id', // 返回json数据中的name
+                        title: '编号', // 表格表头显示文字
+                        align: 'center', // 左右居中
+                        valign: 'middle', // 上下居中
+                        width: '50'
+                    }, {
+                        field: 'name',
+                        title: '用例名称',
+                        align: 'center',
+                        valign: 'middle',
+                        width: '150'
+                    }, {
+                        field: 'test_suit',
+                        title: '所属组件',
+                        align: 'center',
+                        valign: 'middle',
+                        width: '80',
+                        formatter: function (value, row, index) { // 单元格格式化函数
+                            var text = '-';
+                            if (value == 1) {
+                                text = "方式一";
+                            } else if (value == 2) {
+                                text = "方式二";
+                            } else if (value == 3) {
+                                text = "方式三";
+                            } else if (value == 4) {
+                                text = "方式四";
+                            }
+                            return text;
+                        }
+                    }, {
+                        field: 'url_path',
+                        title: 'Path',
+                        align: 'center',
+                        valign: 'middle',
+                        width: '200'
+                    }, {
+                        field: 'url_param',
+                        title: 'Param',
+                        align: 'center',
+                        valign: 'middle',
+                        width: '200'
+                    }, {
+                        field: 'expected_result',
+                        title: '期望结果',
+                        align: 'left',
+                        valign: 'middle',
+                        titleTooltip: "this is name"
+                    }, {
+                        title: "操作",
+                        align: 'center',
+                        valign: 'middle',
+                        width: 160, // 定义列的宽度，单位为像素px
+                        formatter: function (value, row, index) {
+
+                            var btn= '<button id="fat-btn_' + row.id + '" class="btn btn-primary" type="button" onclick="executeCase(\'' + row.id + '\')">' + 'Run' + '</button> ';
+                            var rep= '<a id="report_' + row.id + '" target="_blank">' + 'Null' + '</a> ';
+                            return btn+rep
+
+                        }
+                    }
+                ],
+                onLoadSuccess: function () {  //加载成功时执行
+                    {#layer.msg("加载成功");#}
+                    console.info("加载成功");
+                },
+                onLoadError: function () {  //加载失败时执行
+                    alter("fail");
+                    console.info("加载数据失败");
+                },
+                onEditableSave: function (field, row, oldValue, $el) {
+                    $.ajax({
+                        type: "post",
+                        url: "/Editable/Edit",
+                        data: {strJson: JSON.stringify(row)},
+                        success: function (data, status) {
+                            if (status == "success") {
+                                alert("编辑成功");
+                            }
+                        },
+                        error: function () {
+                            alert("Error");
+                        },
+                        complete: function () {
+
+                        }
+
+                    });
+                }
+            });
+
+            function closeAddModal() {
+                $('#myModal1').modal('hide');
+            }
+
+            function add_another_project() {
+                $('#myModal2').modal('hide');
+            }
+            // 添加入库操作
+            function add_project() {
+                //获取表单数据
+                var form_data = $("#form_project_modal").serialize();
+
+                $.ajax(
+                    {
+                        url: "/testproject/add",
+                        dataType: "json",
+                        type: "post",
+                        data: form_data,
+                        success: function (result) {
+                            $('#myModal2').modal('show');
+                            console.log(result);//打印服务端返回的数据(调试用)
+                            if (result.resultCode == 200) {
+                                alert("SUCCESS");
+                            }
+                        },
+                        error: function () {
+                            alert("异常！");
+                        }
+                    }
+                );
+                alert(form_data);
+            }
+
+            function executeCase(tcid) {
+                exec_button = document.getElementById("fat-btn_" + tcid);
+                report_button = document.getElementById("report_" + tcid);
+                exec_button.innerHTML = "Running...";
+                                                    var xmlhttp;
+                                    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                                        xmlhttp = new XMLHttpRequest();
+                                    }
+                                    else {// code for IE6, IE5
+                                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                                    }
+
+                                    function request(tcid, exec_button, report_button) {
+                                        var temptcid = tcid;
+                                        var button = exec_button;
+                                        return function () {
+                                            xmlhttp.open("GET", "/execute_case/" + temptcid, true);
+                                            xmlhttp.send();
+                                            //alert(xmlhttp.readyState + "\n" + xmlhttp.status);
+                                            xmlhttp.onreadystatechange = function () {
+
+                                                if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                                                    if (xmlhttp.responseText === "True") {
+                                                        button.className = "btn btn-success";
+                                                    }
+                                                    if (xmlhttp.responseText === "False") {
+                                                        button.className = "btn btn-danger";
+                                                    }
+                                                    button.innerHTML = xmlhttp.responseText;
+                                                    report_button.innerHTML = "Detail";
+                                                    report_button.setAttribute("href", "/execute_case/detail/" + temptcid);
+                                                }
+                                            };
+                                        }
+                                    }
+
+                                    var req = request(tcid, exec_button, report_button);
+                                    req();
+            }
+
+
+        </script>
+        <!-- 模态框（Modal） -->
+        <div class="modal fade" id="myModal1" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="width:800px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="myModalLabel">新增工程</h4>
+                    </div>
+                    <form id="form_project_modal">
+                        {% csrf_token %}
+                        <div class="modal-body" style="height:300px;overflow:auto; ">
+                            <div class="form-group">
+                                <label class="col-md-3">工程名称：</label>
+                                <input type="text" id="name" name="name" placeholder="请输入工程名称"/>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3">状态：</label>
+                                <input type="checkbox" id="is_enable" name="is_enable" placeholder=""/>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3">创建者：</label>
+                                <input type="text" id="owner" name="owner" placeholder=""/>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3">描述：</label>
+                                <textarea name="description" style="height: 150px;width: 500px"
+                                          placeholder=""></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3">创建时间：</label>
+                                <input type="datetime-local" id="create_time" name="create_time" placeholder=""/>
+                            </div>
+                            <input type="hidden" id="act" value="add" name="act"/>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                            </button>
+                            <button type="button" onclick="add_project()" class="btn btn-primary">
+                                增加
+                            </button>
+                        </div>
+                    </form>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        <!-- 模态框（Modal） -->
+        <div class="modal fade" id="myModal2" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="width:600px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="myModalLabel">创建成功!</h4>
+                    </div>
+
+                    <div class="modal-body" style="height:50px;overflow:auto; ">
+                        恭喜！创建成功
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" onclick="closeAddModal()" class="btn btn-default" data-dismiss="modal">关闭
+                        </button>
+                        <button type="button" onclick="add_another_project()" class="btn btn-primary">
+                            再创建一个
+                        </button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+{% endblock %}
