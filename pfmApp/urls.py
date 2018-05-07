@@ -19,7 +19,6 @@ urlpatterns = [
     url(r'execute/case/(?P<case_id>[0-9]+)', pfmCaseView.execute_pfmCase),
     url(r'webClient', websocketSvrView.echo),
     url(r'example/get',ExampleView.ExampleView.as_view()),
-    url(r'customAuthToken/get',ExampleView.CustomAuthToken.as_view()),
     url(r'^performance/case/add$', pfmCaseView.add_jmeter_server_action),
     url(r'^pfmApp/script/upload$', pfmCaseView.script_upload_action),
     url(r'^jmx/analyze/page$', pfmCaseView.pfmCase_home_view),

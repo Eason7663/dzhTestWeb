@@ -29,7 +29,10 @@ def add_project_action(request):
     tp = TestProjectModel()
     tp.name = request.POST.get('name')
     tp.is_enable = True
-    tp.owner = request.POST.get('owner')
+    #当前用户即为创建者
+    user = request.user
+    # print(user)
+    tp.owner = user
     tp.description = request.POST.get('description')
     tp.create_time = request.POST.get('create_time')
     # if tp.is_valid():

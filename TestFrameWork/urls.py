@@ -20,7 +20,7 @@ from regApp.urls import router
 from regApp.views import TestProjectViews,TestSuitViews,TestCaseViews,UserViews
 from pfmApp.view import pfmCaseView as pfmAppViews
 
-from rest_framework.authtoken import views
+# from rest_framework.authtoken import views
 
 urlpatterns = [
     ###首页
@@ -46,6 +46,5 @@ urlpatterns = [
     ############################API
     url(r'^api/',include(router.urls)),
     ############################token
-    url(r'^api-token-auth/', views.obtain_auth_token),
 ]
 # ] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

@@ -46,7 +46,7 @@ def findMaster(clusterIp):
             r = redis.Redis(host=ip, port=p, db=0)
             data = r.execute_command('role')
             # print data
-            if data[0] == 'master':
+            if data[0] == b'master':
                 tmp = {}
                 tmp[ip] = p
                 hostIp.append(tmp)

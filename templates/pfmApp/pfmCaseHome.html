@@ -139,11 +139,9 @@
                                     return webSocket
 
                                 }
-                                var startWs = lanchConsole();
 
                                 function closews() {
-                                    {#webSocket.send('close');#}
-                                    startWs.close();
+                                    webSocket.send('close');
                                     alert("close");
                                     return false;
                                 }
@@ -169,7 +167,7 @@
                 <div class="modal-body">
                     <div id="messages" style="height:200px;overflow:auto;"></div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-default" onclick="closews()" data-dismiss="modal">关闭</button>
                         <button type="button" class="btn btn-primary" onclick="startWS()">开始</button>
                     </div>
                 </div><!-- /.modal-content -->
