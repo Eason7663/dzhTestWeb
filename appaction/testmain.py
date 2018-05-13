@@ -5,6 +5,13 @@
 @file: testmain.py
 @time: 2018/04/15
 """
-from regApp.models import *
+# from regApp.models import *
+class foo():
+    def __aba__(self):
+        print("121")
+
+
 if __name__=="__main__":
-    print("********")
+    # print("********")
+    f = foo()
+    f.__aba__()

@@ -9,19 +9,16 @@
 from __future__ import unicode_literals
 from django.db import models
 from .TestProjectModel import TestProjectModel
+from .regAppBaseModel import RegAppBaseModel
 
 
-class TestSuitModel(models.Model):
+class TestSuitModel(RegAppBaseModel):
     test_project = models.ForeignKey(TestProjectModel, on_delete=models.CASCADE, default='')
-    name = models.CharField(max_length=64)
     is_enable = models.BooleanField(default=True)
     case_number = models.BigIntegerField(default=0)
     last_modified = models.DateTimeField(auto_now=True)
-    owner = models.CharField(max_length=64)
     pass_case = models.IntegerField()
     fail_case = models.IntegerField()
-    #描述
-    description = models.CharField(max_length=256)
     on_going = models.BigIntegerField(default=0)
 
     def __str__(self):
