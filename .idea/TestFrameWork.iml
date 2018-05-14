@@ -19,6 +19,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="MatchConceptApp" />
     <orderEntry type="module" module-name="MarkdownDoc" />
+    <orderEntry type="module" module-name="pb2json" />
+    <orderEntry type="module" module-name="design" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />

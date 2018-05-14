@@ -35,7 +35,8 @@ class TestSuitList(generics.ListCreateAPIView):
         serializer.save(owner=self.request.user)
     def list(self, request, *args, **kwargs):
         username = request.session.get('username')
-        queryset = TestSuitModel.objects.filter(owner=username)
+        queryset = TestSuitModel.objects.filter(owner=1)
+        # queryset = TestSuitModel.objects.all()
         serializer = TestSuitSerializer(queryset, many=True)
         #bootstrap table初始化格式 total rows
         r = {}
