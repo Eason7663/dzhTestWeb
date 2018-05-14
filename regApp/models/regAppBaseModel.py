@@ -6,6 +6,8 @@
 @time: 2018/05/13
 """
 from django.db import models
+from django.contrib.auth.models import User
+
 class RegAppBaseModel(models.Model):
     '''
     Base model for TestProjectModel, TestSuitModel, TestCaseModel
@@ -13,7 +15,7 @@ class RegAppBaseModel(models.Model):
     #名称
     name = models.CharField(max_length=64)
     #owner
-    owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     #描述
     description = models.CharField(max_length=256,blank=True)
 

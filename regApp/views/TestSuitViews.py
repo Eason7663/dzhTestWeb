@@ -30,7 +30,6 @@ class TestSuitList(generics.ListCreateAPIView):
 
     serializer_class = TestSuitSerializer
     # permission_classes = (permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly,)
-
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
     def list(self, request, *args, **kwargs):
